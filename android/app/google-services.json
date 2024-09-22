@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "407093477991",
+    "project_id": "shondhan-1",
+    "storage_bucket": "shondhan-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407093477991:android:42ab72f5dd487a6f194ac2",
+        "android_client_info": {
+          "package_name": "com.example.shondhan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407093477991-er27c4i87jhbe3bpva3venhu91akhtju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSOXOXWkY48zzY-k7GMfT3IaiFW0hb2rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "407093477991-er27c4i87jhbe3bpva3venhu91akhtju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
