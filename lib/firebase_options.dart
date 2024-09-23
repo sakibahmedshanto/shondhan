@@ -17,29 +17,17 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -58,6 +46,48 @@ class DefaultFirebaseOptions {
     messagingSenderId: '407093477991',
     projectId: 'shondhan-1',
     storageBucket: 'shondhan-1.appspot.com',
+  );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyCjjLgU5Jz-EkxVfbudHhvtWGKwf9vbcq4',
+    appId: '1:407093477991:web:5c04eb552fb017f1194ac2',
+    messagingSenderId: '407093477991',
+    projectId: 'shondhan-1',
+    authDomain: 'shondhan-1.firebaseapp.com',
+    storageBucket: 'shondhan-1.appspot.com',
+    measurementId: 'G-VHHWSM8BWJ',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAem1DmijTM4nXPMuVb-37X62i30ZGXP8w',
+    appId: '1:407093477991:ios:a183c516948b25df194ac2',
+    messagingSenderId: '407093477991',
+    projectId: 'shondhan-1',
+    storageBucket: 'shondhan-1.appspot.com',
+    androidClientId: '407093477991-i2e5nshoqdo23crh6nkdl4qbdqqbupii.apps.googleusercontent.com',
+    iosClientId: '407093477991-vloovdu34a0g1ino720fql6pp7hfct9f.apps.googleusercontent.com',
+    iosBundleId: 'com.example.shondhan',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAem1DmijTM4nXPMuVb-37X62i30ZGXP8w',
+    appId: '1:407093477991:ios:a183c516948b25df194ac2',
+    messagingSenderId: '407093477991',
+    projectId: 'shondhan-1',
+    storageBucket: 'shondhan-1.appspot.com',
+    androidClientId: '407093477991-i2e5nshoqdo23crh6nkdl4qbdqqbupii.apps.googleusercontent.com',
+    iosClientId: '407093477991-vloovdu34a0g1ino720fql6pp7hfct9f.apps.googleusercontent.com',
+    iosBundleId: 'com.example.shondhan',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCjjLgU5Jz-EkxVfbudHhvtWGKwf9vbcq4',
+    appId: '1:407093477991:web:c74a3891e916bb8e194ac2',
+    messagingSenderId: '407093477991',
+    projectId: 'shondhan-1',
+    authDomain: 'shondhan-1.firebaseapp.com',
+    storageBucket: 'shondhan-1.appspot.com',
+    measurementId: 'G-X9VS47EE2M',
   );
 
 }

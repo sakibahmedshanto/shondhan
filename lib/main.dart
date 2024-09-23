@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:shondhan/screens/auth-ui/splash_screen.dart';
 import 'firebase_options.dart';
 import 'utils/app-constant.dart';
 
@@ -27,9 +28,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: Mailtest(),
-       home: Scaffold(
-        appBar:AppBar(title: Text("Shondhan"),),
-       ),
+       home:const SplashScreen(),
       builder: EasyLoading.init(),
     );
   }
