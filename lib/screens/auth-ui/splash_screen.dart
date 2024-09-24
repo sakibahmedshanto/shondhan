@@ -1,10 +1,9 @@
 // ignore_for_file: file_names, avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
-
 import 'dart:async';
 import 'package:shondhan/screens/admin_screen.dart';
+import 'package:shondhan/screens/intro_screen/viewser_slider.dart';
 import 'package:shondhan/screens/main_screen.dart';
 import '../../controllers/auth_controller/get_user_data_controller.dart';
-import 'welcome_screen.dart';
 import '../../utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.offAll(() => MainScreen());
       }
     } else {
-      Get.to(() => WelcomeScreen());
+      Get.to(() => ViewserSlider());
     }
   }
 
