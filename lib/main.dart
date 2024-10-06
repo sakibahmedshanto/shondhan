@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       title: AppConstant.appMainName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        useMaterial3: true, 
       ),
       // home: Mailtest(),
        home:const SplashScreen(),
