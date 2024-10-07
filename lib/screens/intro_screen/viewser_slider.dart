@@ -15,28 +15,30 @@ class ViewserSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, String>> splashData = [
       {
-        "image": "assets/intro_images/welcome.png",
+        "image": "assets/intro_images/1.png",
         "text":
-            "We make learning engaging & effective, so that you are ready to achieve your goals.",
-        "Title": "Welcome To Shongkolpo",
-        "height": "150",
+            "Effortlessly list and manage your property as a host",
+        "Title": "Welcome To Shondhan",
+        "height": "170",
       },
       {
         "image": "assets/intro_images/2.png",
-        "text": "Easy and fast learning anytime to you",
-        "Title": "Quick And Easy Learning",
-        "height": "200",
+        "text": "Discover and rent your perfect space as a tenant",
+        "Title": "Explore Your Options",
+        "height": "170",
       },
       {
         "image": "assets/intro_images/3.png",
-        "text": "Easy and fast learning anytime to you",
-        "Title": "Quick And Easy Learning",
-        "height": "200",
+        "text": "Make renting and hosting more effortless and rewarding.",
+        "Title": "Craft your personalized journey",
+        "height": "170",
       }
     ];
 
     return Scaffold(
+      backgroundColor: AppConstant.appBackgroundColor ,
       body: Column(
+        
         children: [
           Expanded(
             child: PageView.builder(
@@ -50,9 +52,12 @@ class ViewserSlider extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      splashData[index]["image"]!,
-                      height: double.parse(splashData[index]["height"]!),
+                    Container(
+                      color: Colors.transparent,
+                      child: Image.asset(
+                        splashData[index]["image"]!,
+                        height: double.parse(splashData[index]["height"]!),
+                      ),
                     ),
                     const SizedBox(height: 55),
                     Padding(
@@ -100,7 +105,7 @@ class ViewserSlider extends StatelessWidget {
                     backgroundColor: AppConstant.appScendoryColor, // Background color
                     foregroundColor: Colors.white, // Text color
                     padding:const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 12), // Padding
+                        horizontal: 20, vertical: 10), // Padding
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(15), // Rounded corners
@@ -124,7 +129,7 @@ class ViewserSlider extends StatelessWidget {
                     backgroundColor:AppConstant.appScendoryColor, // Background color
                     foregroundColor: Colors.white, // Text color
                     padding:const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 12), // Padding
+                        horizontal: 20, vertical: 10), // Padding
                     shape: RoundedRectangleBorder(
                       borderRadius:
                           BorderRadius.circular(15), // Rounded corners
