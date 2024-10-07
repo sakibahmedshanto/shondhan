@@ -52,30 +52,33 @@ class _SplashScreenState extends State<SplashScreen> {
         backgroundColor: AppConstant.appScendoryColor,
         elevation: 0,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                width: Get.width/1.2,
-                alignment: Alignment.center,
-                child: Lottie.asset('assets/images/splash-icon2.json'),
-              ),
-            ),
+      body: Column(
+
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: 70,),
             Container(
-              margin: EdgeInsets.only(bottom: 20.0),
-              width: Get.width,
+              width: Get.width/1.2,
               alignment: Alignment.center,
-              child: Text(
-                AppConstant.appPoweredBy,
-                style: TextStyle(
-                    color: AppConstant.appTextColor,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
-        ),
+              child: Lottie.asset('assets/images/splash_animation.json'),
+            ),
+            Text("Loading...", style: TextStyle(
+                  color: AppConstant.appTextColor,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w900)),
+            SizedBox(height: Get.height/3.5,),
+          Container(
+            width: Get.width,
+            alignment: Alignment.center,
+            child: Text(
+              AppConstant.appPoweredBy,
+              style: TextStyle(
+                  color: AppConstant.appTextColor,
+                  fontSize: 12.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          )
+        ],
       ),
     );
   }
