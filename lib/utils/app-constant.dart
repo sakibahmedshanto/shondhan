@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppConstant {
   static String appMainName = 'Shondhan';
-  static String appPoweredBy = 'Powered By Team Taranga';
+  static String appPoweredBy = 'Powered By Team Hexagon';
   static const appMainColor = Color(0xFFF9F5FF);
   static const appScendoryColor =const Color.fromARGB(255, 119, 89, 203);
   static const appTextColor = Color(0xFFFBF5F4);

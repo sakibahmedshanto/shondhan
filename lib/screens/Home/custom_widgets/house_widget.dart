@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shondhan/screens/Home/common/color_constants.dart';
 
 class HouseWidget extends StatelessWidget {
   final String number;
@@ -11,41 +10,48 @@ class HouseWidget extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(
-              18.0,
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        
+        children: <Widget>[
+          Container(
+
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                18.0,
+              ),
+              color:Colors.white,
+              border: Border.all(color: Colors.grey),
             ),
-            color: ColorConstant.kWhiteColor,
-            border: Border.all(color: Colors.grey),
-          ),
-          child: Center(
-            child: Text(
-              number,
-              style: GoogleFonts.notoSans(
-                fontSize: 20,
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
+            child: Center(
+              child: Text(
+                number,
+                style: GoogleFonts.notoSans(
+                  fontSize: 20,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          type,
-          style: GoogleFonts.notoSans(
-            fontSize: 16,
-            color: Colors.black,
+          SizedBox(
+            height: 10,
           ),
-        ),
-      ],
+          Center(
+            child: Text(
+              type,
+              style: GoogleFonts.notoSans(
+                fontSize: 16,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

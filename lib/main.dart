@@ -6,6 +6,7 @@ import 'package:shondhan/screens/auth-ui/splash_screen.dart';
 import 'firebase_options.dart';
 import 'utils/app-constant.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

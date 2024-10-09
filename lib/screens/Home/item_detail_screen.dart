@@ -1,56 +1,50 @@
-import 'package:carousel_slider/carousel_slider.dart'; 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shondhan/screens/Home/common/color_constants.dart';
+import 'package:shondhan/models/property_model.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/menu_widget.dart';
-import 'package:shondhan/screens/Home/models/data_model.dart';
 
 class ItemDetailScreen extends StatelessWidget {
-  final House house;
-  final List<String> imageList;
-  final int imgpath_index;
+  final Property property;
 
-  ItemDetailScreen(
-    this.house,
-    this.imgpath_index,
-    this.imageList,
-  );
+  ItemDetailScreen({required this.property});
 
-  final List<String> houseArray = [
-    "1,416",
-    "4",
-    "2",
-    "2",
-    "3",
-  ];
-  final List<String> typeArray = [
-    "Square foot",
-    "Bedrooms",
-    "Bathrooms",
-    "Garage",
-    "Kitchen",
-  ];
+  // final List<String> houseArray = [
+  //   "1,416",
+  //   "4",
+  //   "2",
+  //   "2",
+  //   "3",
+  // ];
+  // final List<String> typeArray = [
+  //   "Square foot",
+  //   "Bedrooms",
+  //   "Bathrooms",
+  //   "Garage",
+  //   "Kitchen",
+  // ];
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     final oCcy = NumberFormat("#,##,###", "en_INR"); // Updated number format
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: ColorConstant.kWhiteColor,
+    const  SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
       ),
     );
 
-  
     return Scaffold(
-      backgroundColor: ColorConstant.kWhiteColor,
+      backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+        padding:const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
         width: screenWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -68,7 +62,7 @@ class ItemDetailScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(top: 25, bottom: 0),
+          padding:const EdgeInsets.only(top: 25, bottom: 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -86,26 +80,24 @@ class ItemDetailScreen extends StatelessWidget {
                           autoPlay: true,
                           autoPlayInterval: Duration(seconds: 3),
                         ),
-                        items: imageList.map((imagePath) {
+                        items: property.propertyImgs.map((imagePath) {
                           return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            child: Image.asset(
-                              imagePath,
-                              fit: BoxFit.cover,
-                            ),
+                            margin: EdgeInsets.symmetric(horizontal: 2.0),
+                            child: CachedNetworkImage(imageUrl: imagePath,)
                           );
                         }).toList(),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
+                    padding:
+                        const EdgeInsets.only(top: 15, right: 15, left: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         MenuWidget(
                           iconImg: Icons.arrow_back,
-                          iconColor: ColorConstant.kWhiteColor,
+                          iconColor: Colors.white,
                           conBackColor: Colors.transparent,
                           onbtnTap: () {
                             Navigator.of(context).pop(false);
@@ -113,7 +105,7 @@ class ItemDetailScreen extends StatelessWidget {
                         ),
                         MenuWidget(
                           iconImg: Icons.favorite_border,
-                          iconColor: ColorConstant.kWhiteColor,
+                          iconColor: Colors.white,
                           conBackColor: Colors.transparent,
                           onbtnTap: () {
                             Color.fromRGBO(255, 0, 0, 10);
@@ -133,7 +125,7 @@ class ItemDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '\$' + "${oCcy.format(house.amount)}",
+                          '\$' + "${oCcy.format(property.rentPrice)}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
@@ -142,7 +134,7 @@ class ItemDetailScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(top: 5),
                           child: Text(
-                            house.address,
+                            property.address,
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey,
@@ -165,11 +157,12 @@ class ItemDetailScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "20 hours ago",
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
                           ),
                         ),
                       ),
@@ -183,36 +176,33 @@ class ItemDetailScreen extends StatelessWidget {
                   "House Information",
                   style: GoogleFonts.notoSans(
                     fontSize: 20,
-                    color: ColorConstant.kBlackColor,
+                    color: Colors.black,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
               Container(
-                height: 110,
-                child: ListView.builder(
-                  shrinkWrap: false,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: houseArray.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: HouseWidget(
-                        type: typeArray[index],
-                        number: houseArray[index],
-                      ),
-                    );
-                  },
-                ),
-              ),
+                  height: 120,
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                        HouseWidget(number: property.sizeSqft.ceil().toString(), type: "Size"),
+                        HouseWidget(number: property.bedroom.ceil().toString(), type: "Bedroom"),
+                        HouseWidget(number: property.washroom.ceil().toString(), type: "Washroom"),
+                        HouseWidget(number: property.veranda.ceil().toString(), type: "Varanda"),
+                        HouseWidget(number: property.diningSpace.ceil().toString(), type: "Dining Space"),
+                        ],
+                      ))),
               Padding(
-                padding: const EdgeInsets.only(left: 15, right: 15, top: 20, bottom: 20),
+                padding: const EdgeInsets.only(
+                    left: 15, right: 15, top: 20, bottom: 20),
                 child: Text(
                   "Flawless 2 story on a family-friendly cul-de-sac in the heart of Blue Valley! Walk in to an open floor plan flooded with daylight, formal dining private office, screened-in lanai with fireplace, TV hookup & custom heaters that overlooks the lit basketball court.",
                   textAlign: TextAlign.justify,
                   style: GoogleFonts.notoSans(
                     fontSize: 15,
-                    color: ColorConstant.kGreyColor,
+                    color: Colors.grey,
                   ),
                 ),
               ),

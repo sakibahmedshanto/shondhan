@@ -6,7 +6,7 @@ class Property {
   final double floor; // Floor number
   final double rentPrice; // Rent price
   final double sizeSqft; // Size in square feet
-  final String propertyImg; // Image URL for the property
+  final List<String> propertyImgs; // List of image URLs for the property
   final double bedroom; // Number of bedrooms
   final double diningSpace; // Dining space
   final double veranda; // Veranda space
@@ -27,6 +27,7 @@ class Property {
   final String description; // Description of the property
   final List<String> nearbyFacilities; // List of nearby facilities
   final String ownerId; // Reference to the UserModel's uid
+  final bool liked; // Boolean to track if the property is liked by the user
 
   Property({
     required this.propertyId,
@@ -34,7 +35,7 @@ class Property {
     required this.floor,
     required this.rentPrice,
     required this.sizeSqft,
-    required this.propertyImg,
+    required this.propertyImgs, // Changed to list of images
     required this.bedroom,
     required this.diningSpace,
     required this.veranda,
@@ -54,7 +55,8 @@ class Property {
     required this.updatedAt,
     required this.description,
     required this.nearbyFacilities,
-    required this.ownerId, // Owner is referenced by the user's uid
+    required this.ownerId,
+    required this.liked, // New liked field added
   });
 
   // Factory method for JSON serialization/deserialization
@@ -65,7 +67,7 @@ class Property {
       floor: json['floor'], // JSON key is floor
       rentPrice: json['rentPrice'], // JSON key is rentPrice
       sizeSqft: json['sizeSqft'], // JSON key is sizeSqft
-      propertyImg: json['propertyImg'], // JSON key is propertyImg
+      propertyImgs: List<String>.from(json['propertyImgs']), // Changed to list of images
       bedroom: json['bedroom'], // JSON key is bedroom
       diningSpace: json['diningSpace'], // JSON key is diningSpace
       veranda: json['veranda'], // JSON key is veranda
@@ -86,6 +88,7 @@ class Property {
       description: json['description'], // JSON key is description
       nearbyFacilities: List<String>.from(json['nearbyFacilities']), // JSON key is nearbyFacilities
       ownerId: json['ownerId'], // JSON key is ownerId
+      liked: json['liked'], // JSON key for liked status
     );
   }
 
@@ -97,7 +100,7 @@ class Property {
       'floor': floor, // Floor number
       'rentPrice': rentPrice, // Rent price
       'sizeSqft': sizeSqft, // Size in square feet
-      'propertyImg': propertyImg, // Image URL
+      'propertyImgs': propertyImgs, // Changed to list of image URLs
       'bedroom': bedroom, // Number of bedrooms
       'diningSpace': diningSpace, // Dining space
       'veranda': veranda, // Veranda space
@@ -118,6 +121,7 @@ class Property {
       'description': description, // Description of the property
       'nearbyFacilities': nearbyFacilities, // List of nearby facilities
       'ownerId': ownerId, // Owner's UID
+      'liked': liked, // Liked status
     };
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shondhan/screens/Home/common/constants.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -17,7 +16,7 @@ class MainScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Rounded corners
                   child: Image.asset(
-                    Constants.rentList[0],
+                 "assets/images/home/torent.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -53,7 +52,7 @@ class MainScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Rounded corners
                   child: Image.asset(
-                    Constants.rentList[1],
+                   "assets/images/home/rent.jpeg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -89,19 +88,7 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class ForRentPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('For Rent'),
-      ),
-      body: Center(
-        child: Text('For Rent Page'),
-      ),
-    );
-  }
-}
+
 
 class ToRentPage extends StatelessWidget {
   @override

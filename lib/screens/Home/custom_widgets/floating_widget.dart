@@ -13,6 +13,7 @@ class FloatingWidget extends StatelessWidget {
       height: 55,
       width: 150,
       child: FloatingActionButton(
+        backgroundColor: Colors.deepPurple,
         elevation: 5,
         onPressed: () {},
         shape: RoundedRectangleBorder(
