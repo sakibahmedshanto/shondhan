@@ -45,6 +45,9 @@ dependencies:
   cloud_firestore: ^5.4.2
   google_sign_in: ^6.2.1
   cached_network_image: ^3.4.1
+  google_fonts: ^6.2.0
+  intl: ^0.17.0 
+  carousel_slider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +75,7 @@ flutter:
   assets:
     - assets/images/
     - assets/intro_images/
+    - assets/images/home/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/screens/Home/common/constants.dart';
-import 'package:shondhan/screens/Home/home_page_screen.dart';
 
-class MainScreen extends StatelessWidget {
+class RentHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +31,7 @@ class MainScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePageScreen()),
+                      MaterialPageRoute(builder: (context) => ForRentPage()),
                     );
                   },
                   style: ElevatedButton.styleFrom(
