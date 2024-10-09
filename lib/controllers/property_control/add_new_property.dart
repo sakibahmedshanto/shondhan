@@ -41,7 +41,7 @@ class AddPropertyController extends GetxController {
           floor: floor.value,
           rentPrice: rentPrice.value,
           sizeSqft: sizeSqft.value,
-          propertyImg: propertyImg.value,
+          propertyImgs: [propertyImg.value],
           bedroom: bedroom.value,
           diningSpace: diningSpace.value,
           veranda: veranda.value,
@@ -61,6 +61,7 @@ class AddPropertyController extends GetxController {
           updatedAt: DateTime.now(),
           description: description.value,
           nearbyFacilities: ["dummy facility1"],
+          liked: false,
           ownerId: "dummyowner");
 
       // Add property to Firestore

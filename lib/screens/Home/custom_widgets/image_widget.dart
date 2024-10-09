@@ -1,18 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:shondhan/models/property_model.dart';
 import 'package:shondhan/screens/Home/item_detail_screen.dart';
-import 'package:shondhan/screens/Home/models/data_model.dart';
 
 class ImageWidget extends StatelessWidget {
-  final House house;
-  final int imgpath_index;
-  final List<String> imageList;
+  final Property property;
 
   ImageWidget(
-    this.house,
-    this.imgpath_index,
-    this.imageList,
+    { 
+    required this.property,
+    }
   );
 
   @override
@@ -22,31 +22,30 @@ class ImageWidget extends StatelessWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
+      children: [
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ItemDetailScreen(
-                  house,
-                  imgpath_index,
-                  imageList,
-                ),
-              ),
-            );
+            Get.to(()=>ItemDetailScreen(property: property) );
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => ItemDetailScreen(
+            //       house,
+            //       0,
+            //       imageList,
+            //     ),
+            //   ),
+            // );
           },
           child: Container(
             height: 160,
             width: screenWidth,
-            padding: EdgeInsets.only(left: 12, right: 12),
+            padding:const EdgeInsets.only(left: 12, right: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(
-                  imageList[imgpath_index],
-                ),
+                image: CachedNetworkImageProvider( property.propertyImgs[0])
               ),
             ),
             child: Column(
@@ -81,7 +80,7 @@ class ImageWidget extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Text(
-                "\$" + oCcy.format(house.amount),
+                "\$" + oCcy.format(property.rentPrice),
                 style: GoogleFonts.notoSans(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -92,7 +91,7 @@ class ImageWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  house.address,
+                  property.address,
                   style: GoogleFonts.notoSans(
                     fontSize: 15,
                     color: Colors.grey, // Replacing ColorConstant.kGreyColor
@@ -110,7 +109,7 @@ class ImageWidget extends StatelessWidget {
             bottom: 10,
           ),
           child: Text(
-            '${house.bedrooms} bedrooms / ${house.bathrooms} bathrooms / ${house.squarefoot} ft\u00B2',
+            '${property.bedroom} bedrooms / ${property.washroom} bathrooms / ${property.sizeSqft} ft\u00B2',
             style: TextStyle(
               fontSize: 15,
             ),
