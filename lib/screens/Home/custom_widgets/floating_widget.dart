@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shondhan/screens/augmented/view_annotations.dart';
 
 class FloatingWidget extends StatelessWidget {
   final IconData leadingIcon;
@@ -15,7 +17,9 @@ class FloatingWidget extends StatelessWidget {
       child: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
         elevation: 5,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(()=>ViewAnnotations());
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(75.0),
         ),
