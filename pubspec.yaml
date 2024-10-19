@@ -48,6 +48,7 @@ dependencies:
   google_fonts: ^6.2.0
   intl: ^0.17.0 
   carousel_slider: ^5.0.0
+  ar_location_view: ^2.0.14
 
 dev_dependencies:
   flutter_test:
