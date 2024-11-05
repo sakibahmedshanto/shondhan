@@ -102,7 +102,7 @@ class AddPropertyController extends GetxController {
   // Method to submit property
   void submitProperty() async {
     if (!validateFields()) return; // Validate before submission
-
+    
     try {
       // Create Property object
       Property property = Property(

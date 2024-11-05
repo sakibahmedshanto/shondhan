@@ -2,19 +2,17 @@ import 'dart:math';
 
 import 'package:ar_location_view/ar_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shondhan/models/property_model.dart';
 // import 'package:uuid/uuid.dart';
 
 // enum AnnotationType { pharmacy, hotel, library,scl }
 
 class Annotation extends ArAnnotation {
-  final String type;
-  final String imgdata;
-
+  final Property property;
   Annotation({
     required String uid,
     required Position position,
-    required this.type,
-    required this.imgdata,
+    required this.property
   }) : super(uid: uid, position: position);
 }
 // AnnotationType getRandomAnnotation() {
