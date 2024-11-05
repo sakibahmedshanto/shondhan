@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
+import 'package:shondhan/screens/owner/addProperty/add_new_property_screen.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -67,7 +68,7 @@ class MainScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ToRentPage()),
+                      MaterialPageRoute(builder: (context) => AddPropertyScreen()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

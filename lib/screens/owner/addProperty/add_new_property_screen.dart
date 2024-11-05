@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/property_control/add_new_property.dart';
-import '../../widgets/property_widgets/dropdown_input.dart';
-import '../../widgets/property_widgets/text_input.dart';
+import '../../../controllers/property_control/add_new_property.dart';
+import '../../../widgets/property_widgets/dropdown_input.dart';
+import '../../../widgets/property_widgets/text_input.dart';
 
 class AddPropertyScreen extends StatelessWidget {
   final AddPropertyController addPropertyController = Get.put(AddPropertyController());

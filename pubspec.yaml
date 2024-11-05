@@ -49,6 +49,8 @@ dependencies:
   intl: ^0.17.0 
   carousel_slider: ^5.0.0
   ar_location_view: ^2.0.14
+  image_picker: ^1.1.2
+  firebase_storage: ^12.3.4
 
 dev_dependencies:
   flutter_test:
