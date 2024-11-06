@@ -5,10 +5,13 @@ import '../../../controllers/property_control/add_new_property.dart';
 import '../../../widgets/property_widgets/dropdown_input.dart';
 import '../../../widgets/property_widgets/text_input.dart';
 
-class AddPropertyScreen extends StatelessWidget {
-  final AddPropertyController addPropertyController = Get.put(AddPropertyController());
+class AddPropertyScreen extends StatefulWidget {
+  @override
+  State<AddPropertyScreen> createState() => _AddPropertyScreenState();
+}
 
- AddPropertyScreen({super.key});
+class _AddPropertyScreenState extends State<AddPropertyScreen> {
+  final AddPropertyController addPropertyController = Get.put(AddPropertyController());
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,6 @@ class AddPropertyScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextInput(
-              label: 'Property ID',
-              onChanged: (value) => addPropertyController.propertyId.value = value,
-            ),
             TextInput(
               label: 'Building Name',
               onChanged: (value) => addPropertyController.buildingName.value = value,
@@ -70,7 +69,7 @@ class AddPropertyScreen extends StatelessWidget {
             ),
             DropdownInput(
               label: 'Property Type',
-              items: const ['Apartment', 'House', 'Condo', 'Villa'],
+              items: ['Apartment', 'House', 'Condo', 'Villa'],
               onChanged: (value) => addPropertyController.propertyType.value = value ?? '',
             ),
             TextInput(
@@ -80,7 +79,7 @@ class AddPropertyScreen extends StatelessWidget {
             ),
             DropdownInput(
               label: 'Lease Term',
-              items: const ['6 Months', '1 Year', '2 Years'],
+              items: ['6 Months', '1 Year', '2 Years'],
               onChanged: (value) => addPropertyController.leaseTerm.value = value ?? '',
             ),
             TextInput(
@@ -99,7 +98,7 @@ class AddPropertyScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Is Available'),
+                Text('Is Available'),
                 Obx(
                   () => Switch(
                     value: addPropertyController.isAvailable.value,
@@ -114,7 +113,7 @@ class AddPropertyScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Furnished'),
+                Text('Furnished'),
                 Obx(
                   () => Switch(
                     value: addPropertyController.furnished.value,
@@ -129,7 +128,7 @@ class AddPropertyScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Parking Space'),
+                Text('Parking Space'),
                 Obx(
                   () => Switch(
                     value: addPropertyController.parkingSpace.value,
@@ -144,7 +143,7 @@ class AddPropertyScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Pet Friendly'),
+                Text('Pet Friendly'),
                 Obx(
                   () => Switch(
                     value: addPropertyController.petFriendly.value,
@@ -155,7 +154,7 @@ class AddPropertyScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: addPropertyController.submitProperty,
               child: const Text('Submit Property'),

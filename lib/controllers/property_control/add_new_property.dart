@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/models/custom_position_model.dart';
 import '../../models/property_model.dart';
@@ -26,16 +27,15 @@ class AddPropertyController extends GetxController {
   var address = ''.obs;
   var neighborhood = ''.obs;
   var description = ''.obs;
-
+  
   // Firestore instance
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  
+  // Firebase Authentication instance
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   // Method to validate all fields
   bool validateFields() {
-    if (propertyId.value.isEmpty) {
-      Get.snackbar("Validation Error", "Please enter a Property ID.");
-      return false;
-    }
     if (buildingName.value.isEmpty) {
       Get.snackbar("Validation Error", "Please enter the Building Name.");
       return false;
@@ -104,6 +104,18 @@ class AddPropertyController extends GetxController {
     if (!validateFields()) return; // Validate before submission
     
     try {
+
+      // Generate a random property ID
+      String generatedPropertyId = firestore.collection('properties').doc().id;
+      propertyId.value = generatedPropertyId;
+
+      // Get the current user's UID
+      User? user = auth.currentUser;
+      if (user == null) {
+        Get.snackbar("Error", "User not authenticated.");
+        return;
+      }
+      String ownerId = user.uid;
       // Create Property object
       Property property = Property(
         propertyId: propertyId.value,
@@ -143,14 +155,15 @@ class AddPropertyController extends GetxController {
         description: description.value,
         nearbyFacilities: ["dummy facility1"],
         liked: false,
-        ownerId: "dummyowner",
+        ownerId: ownerId,
       );
 
       // Add property to Firestore
+      Get.snackbar("Success", "Property submitted successfully!");
+      
       await firestore.collection('properties').add(property.toJson());
 
       // Show success notification
-      Get.snackbar("Success", "Property submitted successfully!");
 
       // Optionally reset fields and navigate back
       resetFields();
