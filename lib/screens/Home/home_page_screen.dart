@@ -24,12 +24,12 @@ class HomePageScreen extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromRGBO(255, 255, 255, 20),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingWidget(
-          leadingIcon: Icons.explore,
-          txt: "Map view", // Removed key: key
-        ),
+        // backgroundColor: Color.fromRGBO(255, 255, 255, 20),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: FloatingWidget(
+        //   leadingIcon: Icons.explore,
+        //   txt: "Map view", // Removed key: key
+        // ),
         body: FutureBuilder(
           future: FirebaseFirestore.instance.collection('properties').get(),
           builder:

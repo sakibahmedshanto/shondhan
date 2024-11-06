@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 import 'dart:async';
+import 'package:shondhan/models/user-model.dart';
+import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/admin_screen.dart';
 import 'package:shondhan/screens/intro_screen/viewser_slider.dart';
 import 'package:shondhan/screens/main_screen.dart';
@@ -32,11 +34,12 @@ class _SplashScreenState extends State<SplashScreen> {
       final GetUserDataController getUserDataController =
           Get.put(GetUserDataController());
       var userData = await getUserDataController.getUserData(user!.uid);
+      UserModel? userModel = await getUserDataController.getUserModel(user!.uid);
 
       if (userData[0]['isAdmin'] == true) {
         Get.offAll(() => AdminScreen());
       } else {
-        Get.offAll(() => MainScreen());
+        Get.offAll(() => LandingScreen(userModel: userModel!,));
       }
     } else {
       Get.to(() => ViewserSlider());

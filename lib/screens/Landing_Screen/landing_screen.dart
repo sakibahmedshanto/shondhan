@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:shondhan/models/user-model.dart';
+import 'package:shondhan/screens/Landing_Screen/switch_to_owner_button.dart';
 import 'current_location.dart';
 import 'map_ar_button.dart';
 import 'plot_category.dart';
 
 class LandingScreen extends StatelessWidget {
-  List<String> PropertyType = [
+  LandingScreen({super.key,required this.userModel});
+  final UserModel userModel;
+  final List<String> PropertyType = [
     "Home",
     "Office",
     "Fatory",
     "Plot",
   ];
 
-  List<Icon> PropertyIcons = [
+  final List<Icon> PropertyIcons = [
     Icon(Icons.house_rounded, size: 40, color: Colors.deepPurple.shade400),
     Icon(Icons.apartment, size: 40, color: Colors.deepPurple.shade400),
     Icon(Icons.factory_outlined, size: 40, color: Colors.deepPurple.shade400),
@@ -32,6 +36,7 @@ class LandingScreen extends StatelessWidget {
                 locationName: "Gazipur,",
                 city: "Dhaka",
               ),
+              SwitchToOwnerButton(userModel: userModel),
 
               /// two buttons
               MapArButtons(),

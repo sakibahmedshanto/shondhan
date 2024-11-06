@@ -29,8 +29,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const SplashScreen(), 
-      home: LandingScreen(),
+       home: const SplashScreen(), 
+      // home: LandingScreen(),
       builder: EasyLoading.init(),
       // navbar
       getPages: [
