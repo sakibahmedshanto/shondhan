@@ -29,7 +29,6 @@ class SignUpController extends GetxController {
         email: userEmail,
         password: userPassword,
       );
-
       // send email verification
       await userCredential.user!.sendEmailVerification();
 

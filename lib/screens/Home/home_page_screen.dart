@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/image_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
+import 'package:shondhan/widgets/property_widgets/Drawer.dart';
 import '../../models/property_model.dart';
 
 class HomePageScreen extends StatelessWidget {
@@ -25,6 +26,8 @@ class HomePageScreen extends StatelessWidget {
           ),
         ),
         backgroundColor: Color.fromRGBO(255, 255, 255, 20),
+        drawer: MyDrawer(title: "Drawer"),
+
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingWidget(
           leadingIcon: Icons.explore,

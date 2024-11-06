@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
+import 'package:shondhan/utils/app-constant.dart';
+import 'package:shondhan/widgets/property_widgets/Drawer.dart';
 
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(119, 89, 203, 1),
+          title: Text(
+            "Shondhan",
+            style: TextStyle(color: Colors.white),
+          ),
+      ),
+      drawer: MyDrawer(title: "Drawer"),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
