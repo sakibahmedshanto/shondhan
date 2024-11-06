@@ -35,18 +35,18 @@ class ArPropertyWidget extends StatelessWidget {
               imageUrl: annotation.property.propertyImgs.isNotEmpty
                   ? annotation.property.propertyImgs[0]
                   : '', // Use first image or empty if not available
-              height: 60,
-              width: 60,
+              height: 50,
+              width: 40,
               fit: BoxFit.cover,
               placeholder: (context, url) => const SizedBox(
-                height: 60,
-                width: 60,
+                height: 50,
+                width: 40,
                 child: Center(child: CircularProgressIndicator(strokeWidth: 2)),
               ),
               errorWidget: (context, url, error) => const Icon(
                 Icons.broken_image,
                 color: Colors.red,
-                size: 60,
+                size: 50,
               ),
             ),
           ),
@@ -61,21 +61,19 @@ class ArPropertyWidget extends StatelessWidget {
                   annotation.property.buildingName,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                    fontSize: 12,
                     color: Colors.black87,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(height: 4),
                 Text(
-                  '${annotation.property.bedroom} Bedrooms',
+                  '${annotation.property.bedroom.toDouble().ceil()} Bedrooms',
                   style: const TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Colors.black54,
                   ),
                 ),
-                const SizedBox(height: 4),
                 Text(
                   '${annotation.distanceFromUser.toInt()} m away',
                   style: const TextStyle(
