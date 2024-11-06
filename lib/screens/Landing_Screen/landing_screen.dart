@@ -6,8 +6,8 @@ import 'plot_category.dart';
 class LandingScreen extends StatelessWidget {
   List<String> PropertyType = [
     "Home",
-    "Flat",
-    "Apartment",
+    "Office",
+    "Fatory",
     "Plot",
   ];
 

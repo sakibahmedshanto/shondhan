@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
-import 'package:shondhan/screens/Landing_Screen/locations.dart';
 import 'package:shondhan/screens/auth-ui/splash_screen.dart';
 import 'package:shondhan/screens/main_screen.dart'; // Import MainScreen
 import 'firebase_options.dart';
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      //home: const SplashScreen(), 
+      // home: const SplashScreen(), 
       home: LandingScreen(),
       builder: EasyLoading.init(),
       // navbar

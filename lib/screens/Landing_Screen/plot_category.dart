@@ -26,7 +26,7 @@ class PlotCategory extends StatelessWidget {
             itemCount: PropertyIcons.length, // Dynamic item count
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
-              childAspectRatio: 2,
+              childAspectRatio: .95,
             ),
             itemBuilder: (context, index) {
               return InkWell(
@@ -51,8 +51,7 @@ class PlotCategory extends StatelessWidget {
                 },
                 child: Container(
                   margin: EdgeInsets.all(7),
-                  height: 50,
-                  width: MediaQuery.of(context).size.width / 2 - 20,
+                
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(5),
