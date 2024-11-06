@@ -5,20 +5,20 @@ import 'package:shondhan/screens/augmented/view_annotations.dart';
 class FloatingWidget extends StatelessWidget {
   final IconData leadingIcon;
   final String txt;
-  const FloatingWidget({super.key, 
+  FloatingWidget({
     required this.leadingIcon,
     required this.txt,
   });
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 55,
       width: 150,
       child: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
         elevation: 5,
         onPressed: () {
-          Get.to(()=>const ViewAnnotations());
+          Get.to(()=>ViewAnnotations());
         },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(75.0),

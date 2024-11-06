@@ -8,12 +8,10 @@ import 'package:shondhan/utils/app-constant.dart';
 import '../../models/property_model.dart';
 
 class HomePageScreen extends StatelessWidget {
-  const HomePageScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
+      SystemUiOverlayStyle(
         statusBarColor: Color.fromRGBO(255, 255, 255, 20),
       ),
     );
@@ -21,12 +19,12 @@ class HomePageScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppConstant.appScendoryColor,
-          title: const Text(
+          title: Text(
             "Properties",
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 20),
+        backgroundColor: Color.fromRGBO(255, 255, 255, 20),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingWidget(
           leadingIcon: Icons.explore,
@@ -37,18 +35,18 @@ class HomePageScreen extends StatelessWidget {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return const Center(
+              return Center(
                 child: Text("Error fetching properties"),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
+              return Center(
                 child: CupertinoActivityIndicator(),
               );
             }
 
             if (snapshot.data!.docs.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text("No properties available!"),
               );
             }
@@ -61,7 +59,8 @@ class HomePageScreen extends StatelessWidget {
                     propertyData.data() as Map<String, dynamic>);
 
                 return Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 5,left: 15,right: 15),
+                
                   child: ImageWidget(
                     property: property,
                   ),
