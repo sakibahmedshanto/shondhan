@@ -3,6 +3,8 @@ import 'package:shondhan/screens/Home/home_page_screen.dart';
 import 'package:shondhan/screens/owner/addProperty/add_new_property_screen.dart';
 import 'package:shondhan/widgets/property_widgets/custom_navbar.dart'; 
 class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -10,7 +12,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
-   static  List<Widget> _screens = <Widget>[
+   static  final List<Widget> _screens = <Widget>[
     HomePageContent(),
     BookmarksPage(),
     AppsPage(),
@@ -35,6 +37,8 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
   class HomePageContent extends StatelessWidget {
+  const HomePageContent({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
             // First Image with rounded corners
             Expanded(
               child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Rounded corners
                   child: Image.asset(
@@ -70,14 +74,14 @@ class _MainScreenState extends State<MainScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple, // Deep Purple background color
                   ),
-                  child: Text(
+                  child: const Text(
                     "For Rent",
                     style: TextStyle(color: Colors.white), // White text color
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Spacing between the buttons
+            const SizedBox(height: 20), // Spacing between the buttons
             // Second Image with rounded corners
             Expanded(
               child: Padding(
@@ -106,14 +110,14 @@ class _MainScreenState extends State<MainScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple, // Deep Purple background color
                   ),
-                  child: Text(
+                  child: const Text(
                     "To Rent",
                     style: TextStyle(color: Colors.white), // White text color
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Add some spacing at the bottom
+            const SizedBox(height: 20), // Add some spacing at the bottom
           ],
         ),
       ),
@@ -123,13 +127,15 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class ToRentPage extends StatelessWidget {
+  const ToRentPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('To Rent'),
+        title: const Text('To Rent'),
       ),
-      body: Center(
+      body: const Center(
         child: Text('To Rent Page'),
       ),
     );
@@ -137,38 +143,44 @@ class ToRentPage extends StatelessWidget {
 }
 
 class BookmarksPage extends StatelessWidget {
+  const BookmarksPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Bookmarks Page'),
     );
   }
 }
 
 class AppsPage extends StatelessWidget {
+  const AppsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Apps Page'),
     );
   }
 }
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return const Center(
       child: Text('Settings Page'),
     );
   }
-}
+} 
 
 
 class CustomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const CustomNavBar({
+  const CustomNavBar({super.key, 
     required this.currentIndex,
     required this.onTap,
   });

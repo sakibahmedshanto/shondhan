@@ -13,7 +13,7 @@ import 'package:shondhan/screens/Home/custom_widgets/menu_widget.dart';
 class ItemDetailScreen extends StatelessWidget {
   final Property property;
 
-  ItemDetailScreen({required this.property});
+  const ItemDetailScreen({super.key, required this.property});
 
   // final List<String> houseArray = [
   //   "1,416",
@@ -69,7 +69,7 @@ class ItemDetailScreen extends StatelessWidget {
               Stack(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.only(top: 0, bottom: 10),
+                    padding: const EdgeInsets.only(top: 0, bottom: 10),
                     child: SizedBox(
                       height: 200.0,
                       width: screenWidth,
@@ -78,11 +78,11 @@ class ItemDetailScreen extends StatelessWidget {
                           height: 200.0,
                           enlargeCenterPage: true,
                           autoPlay: true,
-                          autoPlayInterval: Duration(seconds: 3),
+                          autoPlayInterval: const Duration(seconds: 3),
                         ),
                         items: property.propertyImgs.map((imagePath) {
                           return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 2.0),
+                            margin: const EdgeInsets.symmetric(horizontal: 2.0),
                             child: CachedNetworkImage(imageUrl: imagePath,)
                           );
                         }).toList(),
@@ -108,7 +108,7 @@ class ItemDetailScreen extends StatelessWidget {
                           iconColor: Colors.white,
                           conBackColor: Colors.transparent,
                           onbtnTap: () {
-                            Color.fromRGBO(255, 0, 0, 10);
+                            const Color.fromRGBO(255, 0, 0, 10);
                           },
                         ),
                       ],
@@ -117,7 +117,7 @@ class ItemDetailScreen extends StatelessWidget {
                 ],
               ),
               Container(
-                padding: EdgeInsets.only(left: 15, top: 10),
+                padding: const EdgeInsets.only(left: 15, top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -125,17 +125,17 @@ class ItemDetailScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '\$' + "${oCcy.format(property.rentPrice)}",
-                          style: TextStyle(
+                          '\$'+ oCcy.format(property.rentPrice),
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 25,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(top: 5),
+                          padding: const EdgeInsets.only(top: 5),
                           child: Text(
                             property.address,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 13,
                               color: Colors.grey,
                             ),
@@ -181,7 +181,7 @@ class ItemDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
+              SizedBox(
                   height: 120,
                   child: SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

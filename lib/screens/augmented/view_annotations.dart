@@ -7,7 +7,7 @@ import '../../models/property_model.dart';
 import 'annotations.dart';
 
 class ViewAnnotations extends StatefulWidget {
-  const ViewAnnotations({Key? key}) : super(key: key);
+  const ViewAnnotations({super.key});
 
   @override
   State<ViewAnnotations> createState() => _ViewAnnotationsState();

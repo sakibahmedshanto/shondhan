@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class HouseWidget extends StatelessWidget {
   final String number;
   final String type;
-  HouseWidget({
+  const HouseWidget({super.key, 
     required this.number,
     required this.type,
   });
@@ -38,7 +38,7 @@ class HouseWidget extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Center(
