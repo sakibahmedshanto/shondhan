@@ -6,7 +6,7 @@ class CustomNavBar extends StatefulWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  CustomNavBar({required this.currentIndex, required this.onTap});
+  const CustomNavBar({super.key, required this.currentIndex, required this.onTap});
 
   @override
   _CustomNavBarState createState() => _CustomNavBarState();

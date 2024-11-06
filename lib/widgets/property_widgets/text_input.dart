@@ -6,11 +6,11 @@ class TextInput extends StatelessWidget {
   final bool isNumber;
 
   const TextInput({
-    Key? key,
+    super.key,
     required this.label,
     required this.onChanged,
     this.isNumber = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class TextInput extends StatelessWidget {
         keyboardType: isNumber ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
         onChanged: onChanged,
       ),

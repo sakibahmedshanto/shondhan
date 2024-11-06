@@ -4,9 +4,9 @@ import 'annotations.dart';
 
 class ArPropertyWidget extends StatelessWidget {
   const ArPropertyWidget({
-    Key? key,
+    super.key,
     required this.annotation,
-  }) : super(key: key);
+  });
 
   final Annotation annotation;
 

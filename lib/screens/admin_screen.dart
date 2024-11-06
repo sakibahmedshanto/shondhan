@@ -5,6 +5,6 @@ class AdminScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Admin"),),);
+    return Scaffold(appBar: AppBar(title: const Text("Admin"),),);
   }
 }

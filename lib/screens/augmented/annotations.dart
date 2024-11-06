@@ -10,10 +10,10 @@ import 'package:shondhan/models/property_model.dart';
 class Annotation extends ArAnnotation {
   final Property property;
   Annotation({
-    required String uid,
-    required Position position,
+    required super.uid,
+    required super.position,
     required this.property
-  }) : super(uid: uid, position: position);
+  });
 }
 // AnnotationType getRandomAnnotation() {
 //   final types = AnnotationType.values.toList();
