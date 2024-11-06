@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shondhan/screens/Home/home_page_screen.dart';
 
 class PlotCategory extends StatelessWidget {
   final List<Icon> PropertyIcons;  // Pass icons to the widget
@@ -34,7 +36,7 @@ class PlotCategory extends StatelessWidget {
                   // Define separate actions based on index
                   switch (index) {
                     case 0:
-                      print("First button pressed");
+                      Get.to(()=>HomePageScreen());
                       break;
                     case 1:
                       print("Second button pressed");

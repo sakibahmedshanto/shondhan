@@ -23,22 +23,6 @@ class CurrentLocation extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      "Location ",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black54,
-                      ),
-                    ),
-                    Icon(
-                      Icons.location_on,
-                      color: Colors.redAccent,
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5),
-                Row(
-                  children: [
                     Icon(
                       Icons.location_on,
                       color: Colors.deepPurple,
