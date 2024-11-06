@@ -1,8 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
 import 'package:shondhan/screens/owner/addProperty/add_new_property_screen.dart';
+import 'package:shondhan/widgets/property_widgets/custom_navbar.dart'; 
+class MainScreen extends StatefulWidget {
+  @override
+  _MainScreenState createState() => _MainScreenState();
+}
 
-class MainScreen extends StatelessWidget {
+class _MainScreenState extends State<MainScreen> {
+  int _currentIndex = 0;
+
+   static  List<Widget> _screens = <Widget>[
+    HomePageContent(),
+    BookmarksPage(),
+    AppsPage(),
+    SettingsPage(),
+  ];
+
+  void _onNavBarTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+   
+  }
+    @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _screens[_currentIndex],
+      bottomNavigationBar: CustomNavBar(
+        currentIndex: _currentIndex,
+        onTap: _onNavBarTap,
+      ),
+    );
+  }
+}
+  class HomePageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +49,7 @@ class MainScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Rounded corners
                   child: Image.asset(
-                 "assets/images/home/torent.jpg",
+                    "assets/images/home/torent.jpg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -53,7 +85,7 @@ class MainScreen extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10), // Rounded corners
                   child: Image.asset(
-                   "assets/images/home/rent.jpeg",
+                    "assets/images/home/rent.jpeg",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -85,11 +117,10 @@ class MainScreen extends StatelessWidget {
           ],
         ),
       ),
+      
     );
   }
 }
-
-
 
 class ToRentPage extends StatelessWidget {
   @override
@@ -101,6 +132,76 @@ class ToRentPage extends StatelessWidget {
       body: Center(
         child: Text('To Rent Page'),
       ),
+    );
+  }
+}
+
+class BookmarksPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Bookmarks Page'),
+    );
+  }
+}
+
+class AppsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Apps Page'),
+    );
+  }
+}
+
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('Settings Page'),
+    );
+  }
+}
+
+
+class CustomNavBar extends StatelessWidget {
+  final int currentIndex;
+  final Function(int) onTap;
+
+  const CustomNavBar({
+    required this.currentIndex,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      currentIndex: currentIndex,
+      onTap: onTap,
+      backgroundColor: Colors.white,
+      selectedItemColor: Colors.purple,
+      unselectedItemColor: Colors.purple.withOpacity(0.5),
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
+      type: BottomNavigationBarType.fixed,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.bookmark),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.apps),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings),
+          label: '',
+        ),
+      ],
     );
   }
 }
