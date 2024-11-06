@@ -6,7 +6,7 @@ import 'package:shondhan/screens/owner/dashboard/dashboardwidgets/appbar_main.da
 import 'package:shondhan/screens/owner/dashboard/dashboardwidgets/property_list_view.dart';
 
 class DashboardMain extends StatelessWidget {
-   DashboardMain({super.key,required this.userModel});
+   const DashboardMain({super.key,required this.userModel});
   final UserModel userModel;
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class DashboardMain extends StatelessWidget {
                   shadowColor:
                       Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.map, color: Colors.white), // Optional icon

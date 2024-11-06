@@ -7,7 +7,7 @@ import '../../../../models/user-model.dart';
 class PropertyListWidget extends StatelessWidget {
   final UserModel userModel;
 
-  PropertyListWidget({required this.userModel});
+  const PropertyListWidget({super.key, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -15,15 +15,15 @@ class PropertyListWidget extends StatelessWidget {
       future: _fetchProperties(userModel.uId), // Fetch properties based on the user ID
       builder: (context, AsyncSnapshot<List<Property>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator()); // Loading indicator
+          return const Center(child: CircularProgressIndicator()); // Loading indicator
         }
 
         if (snapshot.hasError) {
-          return Center(child: Text("Error loading properties."));
+          return const Center(child: Text("Error loading properties."));
         }
 
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text("No properties found."));
+          return const Center(child: Text("No properties found."));
         }
 
         List<Property> properties = snapshot.data!;
@@ -44,17 +44,17 @@ class PropertyListWidget extends StatelessWidget {
                 
                 // Show a confirmation snackbar
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Property deleted successfully')),
+                  const SnackBar(content: Text('Property deleted successfully')),
                 );
               },
               background: Container(
                 color: Colors.red,
-                child: Icon(Icons.delete, color: Colors.white),
+                child: const Icon(Icons.delete, color: Colors.white),
               ),
               child: ListTile(
                 title: Text(property.buildingName),
                 subtitle: Text('Price: ${property.rentPrice}'),
-                trailing: Icon(Icons.arrow_forward),
+                trailing: const Icon(Icons.arrow_forward),
                 onTap: () {
                   // Handle property tap, maybe show more details
                 },

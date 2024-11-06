@@ -29,13 +29,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-       home: const SplashScreen(), 
-      // home: LandingScreen(),
+      home: const SplashScreen(), 
+      //home: LandingScreen(userModel: null,),
       builder: EasyLoading.init(),
       // navbar
       getPages: [
         GetPage(name: '/', page: () => const SplashScreen()),
-        GetPage(name: '/main', page: () => MainScreen()), // Add route for MainScreen
+        GetPage(name: '/main', page: () => const MainScreen()), // Add route for MainScreen
       ],
     );
   }

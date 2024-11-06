@@ -4,7 +4,6 @@ import 'package:shondhan/models/user-model.dart';
 import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/admin_screen.dart';
 import 'package:shondhan/screens/intro_screen/viewser_slider.dart';
-import 'package:shondhan/screens/main_screen.dart';
 import '../../controllers/auth_controller/get_user_data_controller.dart';
 import '../../utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';

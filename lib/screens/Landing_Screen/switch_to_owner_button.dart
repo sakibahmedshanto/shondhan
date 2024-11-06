@@ -4,7 +4,7 @@ import 'package:shondhan/models/user-model.dart';
 import 'package:shondhan/screens/owner/dashboard/dashboard_main.dart';
 
 class SwitchToOwnerButton extends StatelessWidget {
-  SwitchToOwnerButton({super.key, required this.userModel});
+  const SwitchToOwnerButton({super.key, required this.userModel});
   final UserModel userModel;
 
   @override
@@ -16,12 +16,12 @@ class SwitchToOwnerButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.deepPurple,
         elevation: 3, // Slightly reduced elevation for a less bold shadow
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10), // Smaller width
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10), // Smaller width
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15), // Rounded button
         ),
       ),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min, // Ensures compact width
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -1,7 +1,5 @@
-import 'dart:math';
 
 import 'package:ar_location_view/ar_annotation.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:shondhan/models/property_model.dart';
 // import 'package:uuid/uuid.dart';
 

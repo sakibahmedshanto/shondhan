@@ -3,14 +3,14 @@ import 'package:get/get.dart';
 import 'package:shondhan/screens/augmented/view_annotations.dart';
 
 class MapArButtons extends StatelessWidget {
-  const MapArButtons({Key? key}) : super(key: key);
+  const MapArButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20),
-        Row(
+        const SizedBox(height: 20),
+        const Row(
           children: [
             Text(
               "Discover your next home... ",
@@ -21,7 +21,7 @@ class MapArButtons extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           children: [
             Expanded(
@@ -35,7 +35,7 @@ class MapArButtons extends StatelessWidget {
                   shadowColor:
                       Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.map, color: Colors.white), // Optional icon
@@ -48,11 +48,11 @@ class MapArButtons extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 10), // Space between buttons
+            const SizedBox(width: 10), // Space between buttons
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                    Get.to(()=>ViewAnnotations());
+                    Get.to(()=>const ViewAnnotations());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
@@ -60,7 +60,7 @@ class MapArButtons extends StatelessWidget {
                   shadowColor:
                       Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.view_in_ar,

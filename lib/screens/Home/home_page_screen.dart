@@ -8,10 +8,12 @@ import 'package:shondhan/utils/app-constant.dart';
 import '../../models/property_model.dart';
 
 class HomePageScreen extends StatelessWidget {
+  const HomePageScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarColor: Color.fromRGBO(255, 255, 255, 20),
       ),
     );
@@ -19,7 +21,7 @@ class HomePageScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppConstant.appScendoryColor,
-          title: Text(
+          title: const Text(
             "Properties",
             style: TextStyle(color: Colors.white),
           ),
@@ -35,18 +37,18 @@ class HomePageScreen extends StatelessWidget {
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("Error fetching properties"),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CupertinoActivityIndicator(),
               );
             }
 
             if (snapshot.data!.docs.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No properties available!"),
               );
             }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/models/user-model.dart';
+import 'package:shondhan/screens/Landing_Screen/houses_widget.dart';
 import 'package:shondhan/screens/Landing_Screen/switch_to_owner_button.dart';
 import 'current_location.dart';
 import 'map_ar_button.dart';
@@ -32,14 +33,14 @@ class LandingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CurrentLocation(
+              const CurrentLocation(
                 locationName: "Gazipur,",
                 city: "Dhaka",
               ),
               SwitchToOwnerButton(userModel: userModel),
 
               /// two buttons
-              MapArButtons(),
+              const MapArButtons(),
               // Categories 4 buttons
               Flexible(
                 child: PlotCategory(
@@ -47,7 +48,7 @@ class LandingScreen extends StatelessWidget {
                   PropertyType: PropertyType,
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -56,11 +57,12 @@ class LandingScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     TextButton(onPressed:() {},
-                      child: Text("See all"),
+                      child: const Text("See all"),
                     )
                 ],
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),            
+              HousesWidget(),
             ],
           ),
         ),

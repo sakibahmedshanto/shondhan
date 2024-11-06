@@ -5,10 +5,10 @@ class CurrentLocation extends StatelessWidget {
   final String city;
 
   const CurrentLocation({
-    Key? key,
+    super.key,
     required this.locationName,
     required this.city,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +23,22 @@ class CurrentLocation extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.location_on,
                       color: Colors.deepPurple,
                     ),
                     Text(
                       locationName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
                       city,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
-                        color: Colors.black54,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
@@ -56,11 +56,11 @@ class CurrentLocation extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.notifications_active,
                   color: Colors.black54,

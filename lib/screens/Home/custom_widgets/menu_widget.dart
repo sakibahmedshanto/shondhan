@@ -7,12 +7,12 @@ class MenuWidget extends StatelessWidget {
   final Function() onbtnTap;
  
   const MenuWidget({
-    Key? key, //nullable
+    super.key, //nullable
     required this.iconImg, 
     required this.iconColor,
     this.conBackColor = Colors.white,
     required this.onbtnTap,
-  }) : super(key: key);
+  });
 
   // MenuWidget({
   //   Key key,
@@ -33,7 +33,7 @@ class MenuWidget extends StatelessWidget {
         width: 50,
         decoration: BoxDecoration(
           color: conBackColor,
-          border: Border.all(color: Color.fromRGBO(69, 69, 69, 0.486)),
+          border: Border.all(color: const Color.fromRGBO(69, 69, 69, 0.486)),
           borderRadius: BorderRadius.circular(20.0),
         ),
         child: Icon(

@@ -6,7 +6,7 @@ class PlotCategory extends StatelessWidget {
   final List<Icon> PropertyIcons;  // Pass icons to the widget
   final List<String> PropertyType;  // Pass property types to the widget
 
-  PlotCategory({
+  const PlotCategory({super.key, 
     required this.PropertyIcons,
     required this.PropertyType,
   });
@@ -16,17 +16,17 @@ class PlotCategory extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Text(
           "Categories",
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Flexible(
           child: GridView.builder(
             shrinkWrap: true,
             itemCount: PropertyIcons.length, // Dynamic item count
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 4,
               childAspectRatio: .95,
             ),
@@ -52,7 +52,7 @@ class PlotCategory extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  margin: EdgeInsets.all(7),
+                  margin: const EdgeInsets.all(7),
                 
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -62,7 +62,7 @@ class PlotCategory extends StatelessWidget {
                         color: Colors.grey.withOpacity(0.5), // Shadow color
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: Offset(0, 3), // Shadow position
+                        offset: const Offset(0, 3), // Shadow position
                       ),
                     ],
                   ),
@@ -70,10 +70,10 @@ class PlotCategory extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       PropertyIcons[index],
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         PropertyType[index],
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.bold,
                           fontSize: 16,

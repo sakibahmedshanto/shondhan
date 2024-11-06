@@ -186,7 +186,7 @@ class _SignInScreenState extends State<SignInScreen> {
                               );
                               Get.offAll(() => AdminScreen());
                             } else {
-                              UserModel? userModel = await getUserDataController.getUserModel(userCredential!.user!.uid);
+                              UserModel? userModel = await getUserDataController.getUserModel(userCredential.user!.uid);
                               Get.offAll(() =>LandingScreen(userModel: userModel!));
                               Get.snackbar(
                                 "Success User Login",

@@ -13,10 +13,10 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
    static  final List<Widget> _screens = <Widget>[
-    HomePageContent(),
-    BookmarksPage(),
-    AppsPage(),
-    SettingsPage(),
+    const HomePageContent(),
+    const BookmarksPage(),
+    const AppsPage(),
+    const SettingsPage(),
   ];
 
   void _onNavBarTap(int index) {

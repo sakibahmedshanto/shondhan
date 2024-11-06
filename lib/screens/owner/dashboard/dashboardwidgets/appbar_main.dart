@@ -5,7 +5,7 @@ import 'package:shondhan/utils/app-constant.dart';
 
 
 class AppbarMain extends StatelessWidget {
-   AppbarMain({super.key,required this.um});
+   const AppbarMain({super.key,required this.um});
    final UserModel um;
   
   @override
@@ -36,14 +36,14 @@ class AppbarMain extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
                   Text(
-                    "Welcome, "+um.username,
-                    style: TextStyle(
+                    "Welcome, ${um.username}",
+                    style: const TextStyle(
                       fontSize: 18,
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Showcase & Sell with Confidence",
                     style: TextStyle(
                       fontSize: 13,
