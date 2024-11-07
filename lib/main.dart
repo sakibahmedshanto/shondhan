@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/auth-ui/splash_screen.dart';
 import 'package:shondhan/screens/main_screen.dart'; // Import MainScreen
 import 'firebase_options.dart';

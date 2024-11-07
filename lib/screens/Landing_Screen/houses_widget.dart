@@ -1,81 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shondhan/models/property_model.dart';
+import 'horizontan_items.dart'; // import the HorizontanItems widget
 
+class HousesWidget extends StatelessWidget {
+  HousesWidget({super.key});
 
-class HousesWidget extends StatelessWidget{
+  Future<List<Property>> _fetchProperties() async {
+    try {
+      // Fetch data from Firestore collection "properties"
+      var snapshot =
+          await FirebaseFirestore.instance.collection('properties').get();
 
-  List<String> Locations=[
-    "Uttara, Dhaka",
-    "Upashahar, Rajshahi",
-    "Board Bazar, Gazipur",
-  ];
-
-    List<String> HouseName=[
-    "Summer House",
-    "Emerald Palace",
-    "Europe Palace",
-  ];
-
-   List<String> HouseImage=[
-    "assets/images/home/house_2.png",
-    "assets/images/home/house_5.png",
-    "assets/images/home/house_3.png",
-  ];
+      // Convert Firestore documents into Property model objects
+      return snapshot.docs.map((doc) {
+        return Property.fromJson(doc.data());
+      }).toList();
+    } catch (e) {
+      print("Error fetching properties: $e");
+      return [];
+    }
+  }
 
   @override
-  Widget build(BuildContext context)
-  {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          for(var i=0;i<3;i++)
-            Container(
-              margin: EdgeInsets.all(5),
-              padding: EdgeInsets.all(8),
-              //height: 250,
-              width: 220,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10) 
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 140,
-                        child: InkWell(
-                          onTap:(){},
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.asset(HouseImage[i]),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                 Text(HouseName[i],
-                 style: Theme.of(context).textTheme.titleLarge,
-                 ) ,
-                 Row( 
-                  children: [
-                    Icon(Icons.location_on_rounded),
-                    Text(
-                      Locations[i],
-                      style: TextStyle(
-                        color: Colors.black54,
-                      ),
-                    )
-                  ],
-                  ),
-                  // Divider(thickness: 2),
-                  // Text("5 Bed")
-                ],
-              ),
-            )
-        ],),
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Property>>(
+      future: _fetchProperties(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text("No properties available"));
+        }
+
+        List<Property> properties = snapshot.data!;
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: properties.map((property) {
+              return HorizontanItems(property: property);
+            }).toList(),
+          ),
+        );
+      },
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/image_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import '../../models/property_model.dart';

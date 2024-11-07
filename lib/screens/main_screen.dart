@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
 import 'package:shondhan/screens/owner/addProperty/add_new_property_screen.dart';
-import 'package:shondhan/widgets/property_widgets/custom_navbar.dart'; 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
