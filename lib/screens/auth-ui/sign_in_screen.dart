@@ -5,7 +5,6 @@ import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/admin_screen.dart';
 
 import '../../controllers/auth_controller/sign_in_controller.dart';
-import '../main_screen.dart';
 import 'sign_up_screen.dart';
 import '../../utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';

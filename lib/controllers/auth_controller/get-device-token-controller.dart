@@ -18,12 +18,10 @@ class GetDeviceTokenController extends GetxController {
     try {
       String? token = await FirebaseMessaging.instance.getToken();
 
-      if (token != null) {
-        deviceToken = token;
-        print("token : $deviceToken");
-        update();
-      }
-    } catch (e) {
+      deviceToken = token;
+      print("token : $deviceToken");
+      update();
+        } catch (e) {
       Get.snackbar(
         "Error",
         "$e",
