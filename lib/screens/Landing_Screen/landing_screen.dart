@@ -7,6 +7,7 @@ import 'map_ar_button.dart';
 import 'plot_category.dart';
 
 class LandingScreen extends StatelessWidget {
+ 
   LandingScreen({super.key,required this.userModel});
   final UserModel userModel;
   final List<String> PropertyType = [
