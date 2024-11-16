@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shondhan/screens/augmented/view_annotations.dart';
 
 class FloatingWidget extends StatelessWidget {
   final IconData leadingIcon;
   final String txt;
-  FloatingWidget({
+  const FloatingWidget({super.key, 
     required this.leadingIcon,
     required this.txt,
   });
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 55,
       width: 150,
       child: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
         elevation: 5,
-        onPressed: () {},
+        onPressed: () {
+          Get.to(()=>const ViewAnnotations());
+        },
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(75.0),
         ),

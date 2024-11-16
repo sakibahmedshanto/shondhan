@@ -9,8 +9,8 @@ import 'package:shondhan/screens/Home/item_detail_screen.dart';
 class ImageWidget extends StatelessWidget {
   final Property property;
 
-  ImageWidget(
-    { 
+  const ImageWidget(
+    {super.key,  
     required this.property,
     }
   );
@@ -62,7 +62,7 @@ class ImageWidget extends StatelessWidget {
                       color: Colors.white, // Replacing ColorConstant.kWhiteColor
                       borderRadius: BorderRadius.circular(18),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.favorite_border,
                     ),
                   ),
@@ -80,13 +80,13 @@ class ImageWidget extends StatelessWidget {
           child: Row(
             children: <Widget>[
               Text(
-                "\$" + oCcy.format(property.rentPrice),
+                "\$${oCcy.format(property.rentPrice)}",
                 style: GoogleFonts.notoSans(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(
@@ -110,7 +110,7 @@ class ImageWidget extends StatelessWidget {
           ),
           child: Text(
             '${property.bedroom} bedrooms / ${property.washroom} bathrooms / ${property.sizeSqft} ft\u00B2',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 15,
             ),
           ),

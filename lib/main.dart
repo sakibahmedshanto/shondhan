@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/auth-ui/splash_screen.dart';
+import 'package:shondhan/screens/main_screen.dart'; // Import MainScreen
 import 'firebase_options.dart';
 import 'utils/app-constant.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,11 +26,16 @@ class MyApp extends StatelessWidget {
       title: AppConstant.appMainName,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true, 
+        useMaterial3: true,
       ),
-      // home: Mailtest(),
-       home:const SplashScreen(),
+      home: const SplashScreen(), 
+      //home: LandingScreen(userModel: null,),
       builder: EasyLoading.init(),
+      // navbar
+      getPages: [
+        GetPage(name: '/', page: () => const SplashScreen()),
+        GetPage(name: '/main', page: () => const MainScreen()), // Add route for MainScreen
+      ],
     );
   }
 }

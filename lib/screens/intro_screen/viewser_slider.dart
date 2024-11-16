@@ -99,7 +99,7 @@ class ViewserSlider extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () {
                     Get.offAll(
-                        () => WelcomeScreen()); // Navigate to the main page
+                        () => const WelcomeScreen()); // Navigate to the main page
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppConstant.appScendoryColor, // Background color
@@ -117,7 +117,7 @@ class ViewserSlider extends StatelessWidget {
                   onPressed: () {
                     if (_currentPage.value == splashData.length - 1) {
                       Get.offAll(
-                          () => WelcomeScreen()); // Navigate to the main page
+                          () => const WelcomeScreen()); // Navigate to the main page
                     } else {
                       _pageController.nextPage(
                         duration: const Duration(milliseconds: 300),

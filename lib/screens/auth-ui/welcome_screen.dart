@@ -7,7 +7,7 @@ import '../../controllers/auth_controller/google_sign_in_controller.dart';
 import '../../../utils/app-constant.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  WelcomeScreen({super.key});
+  const WelcomeScreen({super.key});
 
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
@@ -72,7 +72,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 90),
+                    const SizedBox(height: 90),
                     Container(
                       width: Get.width / 1.2,
                       height: Get.height / 14,

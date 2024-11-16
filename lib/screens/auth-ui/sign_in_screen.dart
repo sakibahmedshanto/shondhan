@@ -1,9 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unused_local_variable, unnecessary_null_comparison, file_names
 
+import 'package:shondhan/models/user-model.dart';
+import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/admin_screen.dart';
 
 import '../../controllers/auth_controller/sign_in_controller.dart';
-import '../main_screen.dart';
 import 'sign_up_screen.dart';
 import '../../utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -170,7 +171,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         var userData = await getUserDataController
                             .getUserData(userCredential!.user!.uid);
-
+                        
                         if (userCredential != null) {
                           if (userCredential.user!.emailVerified) {
                             //
@@ -184,7 +185,8 @@ class _SignInScreenState extends State<SignInScreen> {
                               );
                               Get.offAll(() => AdminScreen());
                             } else {
-                              Get.offAll(() => MainScreen());
+                              UserModel? userModel = await getUserDataController.getUserModel(userCredential.user!.uid);
+                              Get.offAll(() =>LandingScreen(userModel: userModel!));
                               Get.snackbar(
                                 "Success User Login",
                                 "login Successfully!",

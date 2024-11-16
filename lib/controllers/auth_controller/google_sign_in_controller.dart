@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, unused_local_variable, unused_field, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shondhan/screens/main_screen.dart';
+import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'get-device-token-controller.dart';
 import '../../models/user-model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,7 +57,7 @@ class GoogleSignInController extends GetxController {
               .doc(user.uid)
               .set(userModel.toMap());
           EasyLoading.dismiss();
-         Get.offAll(() => MainScreen());
+         Get.offAll(() => LandingScreen(userModel: userModel,));
         }
       }
     } catch (e) {

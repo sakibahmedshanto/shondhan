@@ -2,16 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/image_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import '../../models/property_model.dart';
 
 class HomePageScreen extends StatelessWidget {
+  const HomePageScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarColor: Color.fromRGBO(255, 255, 255, 20),
       ),
     );
@@ -19,34 +20,34 @@ class HomePageScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: AppConstant.appScendoryColor,
-          title: Text(
+          title: const Text(
             "Properties",
             style: TextStyle(color: Colors.white),
           ),
         ),
-        backgroundColor: Color.fromRGBO(255, 255, 255, 20),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: FloatingWidget(
-          leadingIcon: Icons.explore,
-          txt: "Map view", // Removed key: key
-        ),
+        // backgroundColor: Color.fromRGBO(255, 255, 255, 20),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: FloatingWidget(
+        //   leadingIcon: Icons.explore,
+        //   txt: "Map view", // Removed key: key
+        // ),
         body: FutureBuilder(
           future: FirebaseFirestore.instance.collection('properties').get(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text("Error fetching properties"),
               );
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CupertinoActivityIndicator(),
               );
             }
 
             if (snapshot.data!.docs.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text("No properties available!"),
               );
             }
@@ -59,7 +60,8 @@ class HomePageScreen extends StatelessWidget {
                     propertyData.data() as Map<String, dynamic>);
 
                 return Padding(
-                  padding: const EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 5,left: 15,right: 15),
+                
                   child: ImageWidget(
                     property: property,
                   ),

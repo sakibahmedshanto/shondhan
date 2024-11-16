@@ -7,12 +7,12 @@ class DropdownInput extends StatelessWidget {
   final Function(String?) onChanged;
 
   const DropdownInput({
-    Key? key,
+    super.key,
     required this.label,
     required this.items,
     this.value,
     required this.onChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class DropdownInput extends StatelessWidget {
       child: DropdownButtonFormField<String>(
         decoration: InputDecoration(
           labelText: label,
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
         value: value,
         items: items.map((item) {

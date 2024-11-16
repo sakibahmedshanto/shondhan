@@ -3,9 +3,15 @@
   "packages": [
     {
       "name": "_flutterfire_internals",
-      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.43",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.44",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "ar_location_view",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/ar_location_view-2.0.14",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "archive",
@@ -42,6 +48,36 @@
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/cached_network_image_web-1.3.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "camera",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/camera-0.11.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "camera_android_camerax",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/camera_android_camerax-0.6.10",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "camera_avfoundation",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/camera_avfoundation-0.9.17+4",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "camera_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/camera_platform_interface-2.8.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "camera_web",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/camera_web-0.3.5",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
     },
     {
       "name": "carousel_slider",
@@ -86,6 +122,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "cross_file",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.4+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.5",
       "packageUri": "lib/",
@@ -116,6 +158,30 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "file_selector_linux",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_linux-0.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "file_selector_macos",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_macos-0.9.4+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "file_selector_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.6.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "file_selector_windows",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_windows-0.9.3+3",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
       "name": "firebase_auth",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-5.3.0",
       "packageUri": "lib/",
@@ -135,7 +201,7 @@
     },
     {
       "name": "firebase_core",
-      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-3.5.0",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-3.6.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
     },
@@ -166,6 +232,24 @@
     {
       "name": "firebase_messaging_web",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_web-3.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "firebase_storage",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage-12.3.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_storage_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_platform_interface-5.1.31",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "firebase_storage_web",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage_web-3.10.3",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -236,6 +320,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "flutter_plugin_android_lifecycle",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.23",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
       "name": "flutter_spinkit",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_spinkit-5.2.1",
       "packageUri": "lib/",
@@ -252,6 +342,42 @@
       "rootUri": "file:///D:/Software/flutter_windows_3.24.3-stable/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "geolocator",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator-13.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "geolocator_android",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "geolocator_apple",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_apple-2.3.7",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "geolocator_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_platform_interface-4.2.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "geolocator_web",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_web-4.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "geolocator_windows",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_windows-0.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
     },
     {
       "name": "get",
@@ -314,6 +440,54 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "image_picker",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "image_picker_android",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.12+17",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "image_picker_for_web",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
+      "name": "image_picker_ios",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_ios-0.8.12+1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "image_picker_linux",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_linux-0.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "image_picker_macos",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_macos-0.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
+      "name": "image_picker_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "image_picker_windows",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_windows-0.2.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "intl",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.17.0",
       "packageUri": "lib/",
@@ -344,6 +518,12 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "logging",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/logging-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.19"
+    },
+    {
       "name": "lottie",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-3.1.2",
       "packageUri": "lib/",
@@ -366,6 +546,18 @@
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/meta-1.15.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "mime",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
+      "name": "native_device_orientation",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/native_device_orientation-2.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "octo_image",
@@ -416,6 +608,42 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "permission_handler",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.3.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_android-12.0.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.4.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_html",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_html-0.1.3+2",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_platform_interface-4.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_windows-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "platform",
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/platform-3.1.5",
       "packageUri": "lib/",
@@ -432,6 +660,18 @@
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/rxdart-0.28.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
+    },
+    {
+      "name": "sensors_plus",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus-5.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "sensors_plus_platform_interface",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus_platform_interface-1.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "sky_engine",
@@ -492,6 +732,12 @@
       "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/stream_channel-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.19"
+    },
+    {
+      "name": "stream_transform",
+      "rootUri": "file:///C:/Users/Orin/AppData/Local/Pub/Cache/hosted/pub.dev/stream_transform-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
     },
     {
       "name": "string_scanner",
@@ -560,7 +806,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-11-16T18:14:04.784128Z",
+  "generated": "2024-11-16T18:23:08.334247Z",
   "generator": "pub",
   "generatorVersion": "3.5.3",
   "flutterRoot": "file:///D:/Software/flutter_windows_3.24.3-stable/flutter",
