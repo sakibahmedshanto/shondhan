@@ -26,7 +26,7 @@ class DashboardMain extends StatelessWidget {
                   margin: EdgeInsets.all(10),
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(() => AddPropertyScreen());
+                      Get.to(() => AddPropertyScreen(uId: userModel.uId));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepPurple,

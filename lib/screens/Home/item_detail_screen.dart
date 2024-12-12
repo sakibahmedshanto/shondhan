@@ -193,13 +193,16 @@ class ItemDetailScreen extends StatelessWidget {
                         HouseWidget(number: property.washroom.ceil().toString(), type: "Washroom"),
                         HouseWidget(number: property.veranda.ceil().toString(), type: "Varanda"),
                         HouseWidget(number: property.diningSpace.ceil().toString(), type: "Dining Space"),
+                        HouseWidget(number: property.livingRoom.ceil().toString(), type: "Living Room"),
+                        HouseWidget(number: property.kitchen.ceil().toString(), type: "Kitchen"),
+                        HouseWidget(number: property.storeRoom.ceil().toString(), type: "Store Room"),
                         ],
                       ))),
               Padding(
                 padding: const EdgeInsets.only(
                     left: 15, right: 15, top: 20, bottom: 20),
                 child: Text(
-                  "Flawless 2 story on a family-friendly cul-de-sac in the heart of Blue Valley! Walk in to an open floor plan flooded with daylight, formal dining private office, screened-in lanai with fireplace, TV hookup & custom heaters that overlooks the lit basketball court.",
+                  property.description,
                   textAlign: TextAlign.justify,
                   style: GoogleFonts.notoSans(
                     fontSize: 15,

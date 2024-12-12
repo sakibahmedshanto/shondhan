@@ -101,10 +101,10 @@ class _MainScreenState extends State<MainScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddPropertyScreen()),
-                    );
+                    //Navigator.push(
+                     // context,
+                     // MaterialPageRoute(builder: (context) => AddPropertyScreen()),
+                    //);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple, // Deep Purple background color

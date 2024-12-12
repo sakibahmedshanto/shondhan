@@ -8,14 +8,16 @@ import '../../../widgets/property_widgets/dropdown_input.dart';
 import '../../../widgets/property_widgets/text_input.dart';
 
 class AddPropertyScreen extends StatefulWidget {
-  const AddPropertyScreen({super.key});
+  final String uId;
+  AddPropertyScreen({super.key, required this.uId});
 
   @override
   State<AddPropertyScreen> createState() => _AddPropertyScreenState();
 }
 
 class _AddPropertyScreenState extends State<AddPropertyScreen> {
-  final AddPropertyController addPropertyController = Get.put(AddPropertyController());
+  final AddPropertyController addPropertyController =
+      Get.put(AddPropertyController());
 
   final TextEditingController _imageController = TextEditingController();
   final TextEditingController _videoController = TextEditingController();
@@ -29,8 +31,16 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
     'Electricity': false,
     'Lift': false,
     'Generator': false,
-    'Parking Space': false, // Added Parking Space under utilities
   };
+
+  final Map<String, bool> nearbyFacilities = {
+  'School': false,
+  'Hospital': false,
+  'Mosque': false,
+  'Market': false,
+  'Restaurant': false,
+};
+
 
   void _addImage() {
     if (_imageController.text.isNotEmpty) {
@@ -58,7 +68,10 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
           .where((entry) => entry.value)
           .map((entry) => entry.key)
           .toList();
-
+      final selectedNearbyFacilities = nearbyFacilities.entries
+          .where((entry) => entry.value)
+          .map((entry) => entry.key)
+          .toList();
       final propertyData = {
         "address": addPropertyController.address.value,
         "bedroom": addPropertyController.bedroom.value,
@@ -75,9 +88,9 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
         "isAvailable": addPropertyController.isAvailable.value,
         "leaseTerm": addPropertyController.leaseTerm.value,
         "liked": false, // Default to false
-        "nearbyFacilities": [], // Placeholder, you can add UI to handle this
+        "nearbyFacilities": selectedNearbyFacilities, // Add this
         "neighborhood": addPropertyController.neighborhood.value,
-        "ownerId": const Uuid().v4(), // Auto-generate an owner ID
+        "ownerId": widget.uId, // Auto-generate an owner ID
         "petFriendly": addPropertyController.petFriendly.value,
         "propertyId": propertyId,
         "utilitiesIncluded": selectedUtilities,
@@ -89,9 +102,25 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
         "propertyVideos": propertyVideos,
         "veranda": addPropertyController.veranda.value,
         "washroom": addPropertyController.washroom.value,
+        "location": {
+          "longitude": 1,
+          "latitude": 1,
+          "timestamp": currentTime,
+          "accuracy": 1,
+          "altitude": 1,
+          "altitudeAccuracy": 1,
+          "heading": 1,
+          "headingAccuracy": 1,
+          "speed": 1,
+          "speedAccuracy": 1,
+        },
+       "parkingSpace": addPropertyController.parkingSpace.value,
       };
 
-      await FirebaseFirestore.instance.collection('properties').doc().set(propertyData);
+      await FirebaseFirestore.instance
+          .collection('properties')
+          .doc()
+          .set(propertyData);
 
       Get.snackbar('Success', 'Property submitted successfully');
     } catch (e) {
@@ -112,72 +141,86 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
           children: [
             TextInput(
               label: 'Building Name',
-              onChanged: (value) => addPropertyController.buildingName.value = value,
+              onChanged: (value) =>
+                  addPropertyController.buildingName.value = value,
             ),
             TextInput(
               label: 'Floor',
               isNumber: true,
-              onChanged: (value) => addPropertyController.floor.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.floor.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Rent Price',
               isNumber: true,
-              onChanged: (value) => addPropertyController.rentPrice.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.rentPrice.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Size (sqft)',
               isNumber: true,
-              onChanged: (value) => addPropertyController.sizeSqft.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.sizeSqft.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Bedrooms',
               isNumber: true,
-              onChanged: (value) => addPropertyController.bedroom.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.bedroom.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Dining Space',
               isNumber: true,
-              onChanged: (value) => addPropertyController.diningSpace.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.diningSpace.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Living Room',
               isNumber: true,
-              onChanged: (value) => addPropertyController.livingRoom.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.livingRoom.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Kitchen',
               isNumber: true,
-              onChanged: (value) => addPropertyController.kitchen.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.kitchen.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Store Room',
               isNumber: true,
-              onChanged: (value) => addPropertyController.storeRoom.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.storeRoom.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Veranda Space',
               isNumber: true,
-              onChanged: (value) => addPropertyController.veranda.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.veranda.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             TextInput(
               label: 'Washrooms',
               isNumber: true,
-              onChanged: (value) => addPropertyController.washroom.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.washroom.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             DropdownInput(
               label: 'Property Type',
               items: const ['Apartment', 'House', 'Condo', 'Villa'],
-              onChanged: (value) => addPropertyController.propertyType.value = value ?? '',
+              onChanged: (value) =>
+                  addPropertyController.propertyType.value = value ?? '',
             ),
             TextInput(
               label: 'Deposit Amount',
               isNumber: true,
-              onChanged: (value) => addPropertyController.depositAmount.value = double.tryParse(value) ?? 0.0,
+              onChanged: (value) => addPropertyController.depositAmount.value =
+                  double.tryParse(value) ?? 0.0,
             ),
             DropdownInput(
               label: 'Lease Term',
               items: const ['6 Months', '1 Year', '2 Years'],
-              onChanged: (value) => addPropertyController.leaseTerm.value = value ?? '',
+              onChanged: (value) =>
+                  addPropertyController.leaseTerm.value = value ?? '',
             ),
             TextInput(
               label: 'Address',
@@ -185,11 +228,13 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
             ),
             TextInput(
               label: 'Neighborhood',
-              onChanged: (value) => addPropertyController.neighborhood.value = value,
+              onChanged: (value) =>
+                  addPropertyController.neighborhood.value = value,
             ),
             TextInput(
               label: 'Description',
-              onChanged: (value) => addPropertyController.description.value = value,
+              onChanged: (value) =>
+                  addPropertyController.description.value = value,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,6 +245,20 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                     value: addPropertyController.isAvailable.value,
                     onChanged: (value) {
                       addPropertyController.isAvailable.value = value;
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Parking Space'),
+                Obx(
+                  () => Switch(
+                    value: addPropertyController.parkingSpace.value,
+                    onChanged: (value) {
+                      addPropertyController.parkingSpace.value = value;
                     },
                   ),
                 ),
@@ -235,6 +294,22 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                 );
               }).toList(),
             ),
+            const SizedBox(height: 20),
+            const Text('Nearby Facilities'),
+            const SizedBox(height: 10),
+            Column(
+              children: nearbyFacilities.keys.map((facility) {
+                return CheckboxListTile(
+                  title: Text(facility),
+                  value: nearbyFacilities[facility],
+                  onChanged: (value) {
+                    setState(() {
+                      nearbyFacilities[facility] = value ?? false;
+                    });
+                  },
+                );
+              }).toList(),
+            ),
             const SizedBox(height: 10),
             const Text('Add Images'),
             TextField(
@@ -251,7 +326,8 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
               children: propertyImages
                   .map((img) => Chip(
                         label: Text(img),
-                        onDeleted: () => setState(() => propertyImages.remove(img)),
+                        onDeleted: () =>
+                            setState(() => propertyImages.remove(img)),
                       ))
                   .toList(),
             ),
@@ -271,7 +347,8 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
               children: propertyVideos
                   .map((vid) => Chip(
                         label: Text(vid),
-                        onDeleted: () => setState(() => propertyVideos.remove(vid)),
+                        onDeleted: () =>
+                            setState(() => propertyVideos.remove(vid)),
                       ))
                   .toList(),
             ),
