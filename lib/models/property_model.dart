@@ -7,8 +7,12 @@ class Property {
   final double rentPrice; // Rent price
   final double sizeSqft; // Size in square feet
   final List<String> propertyImgs; // List of image URLs for the property
+  final List<String> propertyVideos; // New field: List of video URLs
   final double bedroom; // Number of bedrooms
   final double diningSpace; // Dining space
+  final double livingRoom; // New field: Living room space
+  final double kitchen; // New field: Kitchen space
+  final double storeRoom; // New field: Store room space
   final double veranda; // Veranda space
   final double washroom; // Number of washrooms
   final bool isAvailable; // Availability status
@@ -35,9 +39,13 @@ class Property {
     required this.floor,
     required this.rentPrice,
     required this.sizeSqft,
-    required this.propertyImgs, // Changed to list of images
+    required this.propertyImgs,
+    required this.propertyVideos, // New field
     required this.bedroom,
     required this.diningSpace,
+    required this.livingRoom, // New field
+    required this.kitchen, // New field
+    required this.storeRoom, // New field
     required this.veranda,
     required this.washroom,
     required this.isAvailable,
@@ -56,72 +64,80 @@ class Property {
     required this.description,
     required this.nearbyFacilities,
     required this.ownerId,
-    required this.liked, // New liked field added
+    required this.liked,
   });
 
   // Factory method for JSON serialization/deserialization
-  factory Property.fromJson(Map<String, dynamic> json) {
-    return Property(
-      propertyId: json['propertyId'], // JSON key is propertyId
-      buildingName: json['buildingName'], // JSON key is buildingName
-      floor: json['floor'], // JSON key is floor
-      rentPrice: json['rentPrice'], // JSON key is rentPrice
-      sizeSqft: json['sizeSqft'], // JSON key is sizeSqft
-      propertyImgs: List<String>.from(json['propertyImgs']), // Changed to list of images
-      bedroom: json['bedroom'], // JSON key is bedroom
-      diningSpace: json['diningSpace'], // JSON key is diningSpace
-      veranda: json['veranda'], // JSON key is veranda
-      washroom: json['washroom'], // JSON key is washroom
-      isAvailable: json['isAvailable'], // JSON key is isAvailable
-      furnished: json['furnished'], // JSON key is furnished
-      parkingSpace: json['parkingSpace'], // JSON key is parkingSpace
-      propertyType: json['propertyType'], // JSON key is propertyType
-      depositAmount: json['depositAmount'], // JSON key is depositAmount
-      leaseTerm: json['leaseTerm'], // JSON key is leaseTerm
-      utilitiesIncluded: List<String>.from(json['utilitiesIncluded']), // JSON key is utilitiesIncluded
-      petFriendly: json['petFriendly'], // JSON key is petFriendly
-      location: CustomPosition.fromJson(json['location']), // JSON key is location
-      address: json['address'], // JSON key is address
-      neighborhood: json['neighborhood'], // JSON key is neighborhood
-      createdAt: DateTime.parse(json['createdAt']), // JSON key is createdAt
-      updatedAt: DateTime.parse(json['updatedAt']), // JSON key is updatedAt
-      description: json['description'], // JSON key is description
-      nearbyFacilities: List<String>.from(json['nearbyFacilities']), // JSON key is nearbyFacilities
-      ownerId: json['ownerId'], // JSON key is ownerId
-      liked: json['liked'], // JSON key for liked status
-    );
-  }
+factory Property.fromJson(Map<String, dynamic> json) {
+  return Property(
+    propertyId: json['propertyId'] ?? '',
+    buildingName: json['buildingName'] ?? '',
+    floor: (json['floor'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    rentPrice: (json['rentPrice'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    sizeSqft: (json['sizeSqft'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    propertyImgs: List<String>.from(json['propertyImgs'] ?? []),
+    propertyVideos: List<String>.from(json['propertyVideos'] ?? []),
+    bedroom: (json['bedroom'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    diningSpace: (json['diningSpace'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    livingRoom: (json['livingRoom'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    kitchen: (json['kitchen'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    storeRoom: (json['storeRoom'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    veranda: (json['veranda'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    washroom: (json['washroom'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    isAvailable: json['isAvailable'] ?? false,
+    furnished: json['furnished'] ?? false,
+    parkingSpace: json['parkingSpace'] ?? false,
+    propertyType: json['propertyType'] ?? '',
+    depositAmount: (json['depositAmount'] as num?)?.toDouble() ?? 0.0, // Default to 0.0 if null
+    leaseTerm: json['leaseTerm'] ?? '',
+    utilitiesIncluded: List<String>.from(json['utilitiesIncluded'] ?? []),
+    petFriendly: json['petFriendly'] ?? false,
+    location: CustomPosition.fromJson(json['location']),
+    address: json['address'] ?? '',
+    neighborhood: json['neighborhood'] ?? '',
+    createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']) : DateTime.now(),
+    updatedAt: json['updatedAt'] != null ? DateTime.parse(json['updatedAt']) : DateTime.now(),
+    description: json['description'] ?? '',
+    nearbyFacilities: List<String>.from(json['nearbyFacilities'] ?? []),
+    ownerId: json['ownerId'] ?? '',
+    liked: json['liked'] ?? false,
+  );
+}
 
   // Convert to JSON format
   Map<String, dynamic> toJson() {
     return {
-      'propertyId': propertyId, // Property ID
-      'buildingName': buildingName, // Building name
-      'floor': floor, // Floor number
-      'rentPrice': rentPrice, // Rent price
-      'sizeSqft': sizeSqft, // Size in square feet
-      'propertyImgs': propertyImgs, // Changed to list of image URLs
-      'bedroom': bedroom, // Number of bedrooms
-      'diningSpace': diningSpace, // Dining space
-      'veranda': veranda, // Veranda space
-      'washroom': washroom, // Number of washrooms
-      'isAvailable': isAvailable, // Availability status
-      'furnished': furnished, // Furnished status
-      'parkingSpace': parkingSpace, // Parking space availability
-      'propertyType': propertyType, // Type of property
-      'depositAmount': depositAmount, // Deposit amount
-      'leaseTerm': leaseTerm, // Lease term
-      'utilitiesIncluded': utilitiesIncluded, // List of included utilities
-      'petFriendly': petFriendly, // Pet-friendly status
-      'location': location.toJson(), // Location as JSON
-      'address': address, // Address of the property
-      'neighborhood': neighborhood, // Neighborhood of the property
-      'createdAt': createdAt.toIso8601String(), // Creation timestamp
-      'updatedAt': updatedAt.toIso8601String(), // Update timestamp
-      'description': description, // Description of the property
-      'nearbyFacilities': nearbyFacilities, // List of nearby facilities
-      'ownerId': ownerId, // Owner's UID
-      'liked': liked, // Liked status
+      'propertyId': propertyId,
+      'buildingName': buildingName,
+      'floor': floor,
+      'rentPrice': rentPrice,
+      'sizeSqft': sizeSqft,
+      'propertyImgs': propertyImgs,
+      'propertyVideos': propertyVideos, // New field
+      'bedroom': bedroom,
+      'diningSpace': diningSpace,
+      'livingRoom': livingRoom, // New field
+      'kitchen': kitchen, // New field
+      'storeRoom': storeRoom, // New field
+      'veranda': veranda,
+      'washroom': washroom,
+      'isAvailable': isAvailable,
+      'furnished': furnished,
+      'parkingSpace': parkingSpace,
+      'propertyType': propertyType,
+      'depositAmount': depositAmount,
+      'leaseTerm': leaseTerm,
+      'utilitiesIncluded': utilitiesIncluded,
+      'petFriendly': petFriendly,
+      'location': location.toJson(),
+      'address': address,
+      'neighborhood': neighborhood,
+      'createdAt': createdAt.toIso8601String(),
+      'updatedAt': updatedAt.toIso8601String(),
+      'description': description,
+      'nearbyFacilities': nearbyFacilities,
+      'ownerId': ownerId,
+      'liked': liked,
     };
   }
 }

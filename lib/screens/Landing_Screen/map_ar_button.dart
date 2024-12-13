@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/augmented/view_annotations.dart';
+import 'package:shondhan/screens/mapView/map_view_screen.dart';
 
 class MapArButtons extends StatelessWidget {
   const MapArButtons({super.key});
@@ -27,7 +28,7 @@ class MapArButtons extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-               //add functionality here
+               Get.to(()=> MapViewScreen());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,

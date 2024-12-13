@@ -11,9 +11,13 @@ class AddPropertyController extends GetxController {
   var floor = 0.0.obs;
   var rentPrice = 0.0.obs;
   var sizeSqft = 0.0.obs;
-  var propertyImg = ''.obs;
+  var propertyImg = <String>[].obs;
+  var propertyVideos = <String>[].obs; // New field for videos
   var bedroom = 0.0.obs;
   var diningSpace = 0.0.obs;
+  var livingRoom = 0.0.obs; // New field for living room
+  var kitchen = 0.0.obs; // New field for kitchen
+  var storeRoom = 0.0.obs; // New field for store room
   var veranda = 0.0.obs;
   var washroom = 0.0.obs;
   var isAvailable = false.obs;
@@ -27,10 +31,11 @@ class AddPropertyController extends GetxController {
   var address = ''.obs;
   var neighborhood = ''.obs;
   var description = ''.obs;
-  
+  var nearbyFacilities = <String>[].obs;
+
   // Firestore instance
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  
+
   // Firebase Authentication instance
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -52,7 +57,7 @@ class AddPropertyController extends GetxController {
       Get.snackbar("Validation Error", "Please enter the Size in Sqft.");
       return false;
     }
-    if (propertyImg.value.isEmpty) {
+    if (propertyImg.isEmpty) {
       Get.snackbar("Validation Error", "Please upload at least one property image.");
       return false;
     }
@@ -62,6 +67,18 @@ class AddPropertyController extends GetxController {
     }
     if (diningSpace.value == 0.0) {
       Get.snackbar("Validation Error", "Please specify the Dining Space.");
+      return false;
+    }
+    if (livingRoom.value == 0.0) {
+      Get.snackbar("Validation Error", "Please specify the Living Room space.");
+      return false;
+    }
+    if (kitchen.value == 0.0) {
+      Get.snackbar("Validation Error", "Please specify the Kitchen space.");
+      return false;
+    }
+    if (storeRoom.value == 0.0) {
+      Get.snackbar("Validation Error", "Please specify the Store Room space.");
       return false;
     }
     if (veranda.value == 0.0) {
@@ -102,9 +119,8 @@ class AddPropertyController extends GetxController {
   // Method to submit property
   void submitProperty() async {
     if (!validateFields()) return; // Validate before submission
-    
-    try {
 
+    try {
       // Generate a random property ID
       String generatedPropertyId = firestore.collection('properties').doc().id;
       propertyId.value = generatedPropertyId;
@@ -116,6 +132,7 @@ class AddPropertyController extends GetxController {
         return;
       }
       String ownerId = user.uid;
+
       // Create Property object
       Property property = Property(
         propertyId: propertyId.value,
@@ -123,9 +140,13 @@ class AddPropertyController extends GetxController {
         floor: floor.value,
         rentPrice: rentPrice.value,
         sizeSqft: sizeSqft.value,
-        propertyImgs: [propertyImg.value],
+        propertyImgs: propertyImg,
+        propertyVideos: propertyVideos, // New field for property videos
         bedroom: bedroom.value,
         diningSpace: diningSpace.value,
+        livingRoom: livingRoom.value, // New field for living room
+        kitchen: kitchen.value, // New field for kitchen
+        storeRoom: storeRoom.value, // New field for store room
         veranda: veranda.value,
         washroom: washroom.value,
         isAvailable: isAvailable.value,
@@ -159,11 +180,10 @@ class AddPropertyController extends GetxController {
       );
 
       // Add property to Firestore
-      Get.snackbar("Success", "Property submitted successfully!");
-      
       await firestore.collection('properties').add(property.toJson());
 
       // Show success notification
+      Get.snackbar("Success", "Property submitted successfully!");
 
       // Optionally reset fields and navigate back
       resetFields();
@@ -181,9 +201,13 @@ class AddPropertyController extends GetxController {
     floor.value = 0.0;
     rentPrice.value = 0.0;
     sizeSqft.value = 0.0;
-    propertyImg.value = '';
+    propertyImg.clear();
+    propertyVideos.clear(); // Reset the property videos
     bedroom.value = 0.0;
     diningSpace.value = 0.0;
+    livingRoom.value = 0.0;
+    kitchen.value = 0.0;
+    storeRoom.value = 0.0;
     veranda.value = 0.0;
     washroom.value = 0.0;
     isAvailable.value = false;
