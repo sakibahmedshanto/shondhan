@@ -11,7 +11,7 @@ class AddPropertyController extends GetxController {
   var floor = 0.0.obs;
   var rentPrice = 0.0.obs;
   var sizeSqft = 0.0.obs;
-  var propertyImg = ''.obs;
+  var propertyImg = <String>[].obs;
   var propertyVideos = <String>[].obs; // New field for videos
   var bedroom = 0.0.obs;
   var diningSpace = 0.0.obs;
@@ -31,6 +31,7 @@ class AddPropertyController extends GetxController {
   var address = ''.obs;
   var neighborhood = ''.obs;
   var description = ''.obs;
+  var nearbyFacilities = <String>[].obs;
 
   // Firestore instance
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -56,7 +57,7 @@ class AddPropertyController extends GetxController {
       Get.snackbar("Validation Error", "Please enter the Size in Sqft.");
       return false;
     }
-    if (propertyImg.value.isEmpty) {
+    if (propertyImg.isEmpty) {
       Get.snackbar("Validation Error", "Please upload at least one property image.");
       return false;
     }
@@ -139,7 +140,7 @@ class AddPropertyController extends GetxController {
         floor: floor.value,
         rentPrice: rentPrice.value,
         sizeSqft: sizeSqft.value,
-        propertyImgs: [propertyImg.value],
+        propertyImgs: propertyImg,
         propertyVideos: propertyVideos, // New field for property videos
         bedroom: bedroom.value,
         diningSpace: diningSpace.value,
@@ -200,7 +201,7 @@ class AddPropertyController extends GetxController {
     floor.value = 0.0;
     rentPrice.value = 0.0;
     sizeSqft.value = 0.0;
-    propertyImg.value = '';
+    propertyImg.clear();
     propertyVideos.clear(); // Reset the property videos
     bedroom.value = 0.0;
     diningSpace.value = 0.0;
