@@ -51,6 +51,8 @@ dependencies:
   ar_location_view: ^2.0.14
   image_picker: ^1.1.2
   firebase_storage: ^12.3.4
+  google_maps_flutter: ^2.10.0
+  location: ^7.0.1
 
 dev_dependencies:
   flutter_test:
