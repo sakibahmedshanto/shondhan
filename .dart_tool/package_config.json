@@ -398,6 +398,12 @@
       "languageVersion": "2.14"
     },
     {
+      "name": "google_generative_ai",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/google_generative_ai-0.4.6",
+      "packageUri": "lib/",
+      "languageVersion": "3.1"
+    },
+    {
       "name": "google_identity_services_web",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/google_identity_services_web-0.3.1+4",
       "packageUri": "lib/",
@@ -548,6 +554,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "json_annotation",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/json_annotation-4.9.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "leak_tracker",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/leak_tracker-10.0.5",
       "packageUri": "lib/",
@@ -680,6 +692,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "pedantic",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/pedantic-1.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "permission_handler",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler-11.3.1",
       "packageUri": "lib/",
@@ -762,6 +780,18 @@
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
+    },
+    {
+      "name": "speech_to_text",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/speech_to_text-7.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "speech_to_text_platform_interface",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/speech_to_text_platform_interface-2.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
     },
     {
       "name": "sprintf",
@@ -932,7 +962,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-13T17:37:16.861954Z",
+  "generated": "2024-12-16T16:56:44.841716Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///D:/flutter_installation1/flutter",
