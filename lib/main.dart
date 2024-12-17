@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/auth-ui/splash_screen.dart';
+import 'package:shondhan/screens/geminiFilter/PropertyFilterScreen.dart';
+import 'package:shondhan/screens/geminiFilter/schema.dart';
 import 'package:shondhan/screens/main_screen.dart'; // Import MainScreen
+import 'package:shondhan/screens/speechToText/speech_to_text.dart';
 import 'firebase_options.dart';
 import 'utils/app-constant.dart';
 
@@ -28,8 +31,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(), 
-      //home: LandingScreen(userModel: null,),
+      // home: const SplashScreen(), 
+
+      // home:SpeechToTextPage(),
+
+      home: PropertyFilterScreen(),
       builder: EasyLoading.init(),
       // navbar
       getPages: [
