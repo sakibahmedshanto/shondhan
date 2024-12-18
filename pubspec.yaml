@@ -53,6 +53,8 @@ dependencies:
   firebase_storage: ^12.3.4
   google_maps_flutter: ^2.10.0
   location: ^7.0.1
+  http: ^1.1.0
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
