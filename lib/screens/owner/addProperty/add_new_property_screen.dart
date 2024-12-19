@@ -7,6 +7,8 @@ import 'package:shondhan/screens/Home/item_detail_screen.dart';
 import '../../../controllers/property_control/add_new_property.dart';
 import '../../../widgets/property_widgets/dropdown_input.dart';
 import '../../../widgets/property_widgets/text_input.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class AddPropertyScreen extends StatefulWidget {
   final String uId;
@@ -26,7 +28,14 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
 
   final List<String> propertyImages = [];
   final List<String> propertyVideos = [];
+  LatLng? _selectedLocation;
+  double? _accuracy;
+  GoogleMapController? _mapController;
+  bool _isLocationSaved = false;
+  String? _locationText;
 
+  Location _location = Location();
+  bool _isLoading = false;
   final Map<String, bool> utilitiesIncluded = {
     'Gas': false,
     'Water': false,
@@ -157,11 +166,88 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
     }
   }
 
+  Future<void> _getCurrentLocation() async {
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+
+      final currentLocation = await _location.getLocation();
+      final latLng =
+          LatLng(currentLocation.latitude!, currentLocation.longitude!);
+
+      setState(() {
+        _selectedLocation = latLng;
+        _accuracy = currentLocation.accuracy;
+      });
+
+      _mapController?.animateCamera(
+        CameraUpdate.newLatLngZoom(latLng, 16.0),
+      );
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to get current location: $e');
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  void _moveMap(LatLng newPosition) {
+    if (_mapController != null) {
+      _mapController!.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: newPosition,
+            zoom: 15.0,
+          ),
+        ),
+      );
+    }
+  }
+
+  void _onMapTap(LatLng latLng) {
+    setState(() {
+      _selectedLocation = latLng;
+    });
+
+    _moveMap(latLng);
+  }
+
+  void _saveLocation() {
+    setState(() {
+      _isLocationSaved = true;
+      _locationText =
+          'Latitude: ${_selectedLocation!.latitude}, Longitude: ${_selectedLocation!.longitude}, Accuracy: ${_accuracy ?? 'Unknown'}m';
+    });
+    Get.snackbar(
+      'Location Saved',
+      'Latitude: ${_selectedLocation!.latitude}, Longitude: ${_selectedLocation!.longitude}, Accuracy: ${_accuracy ?? 'Unknown'}m',
+      duration: const Duration(seconds: 4),
+    );
+
+    // Clear the button text after 10 seconds
+    Future.delayed(const Duration(seconds: 10), () {
+      setState(() {
+        _locationText = null;
+        _isLocationSaved = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Add Property'),
+          title: const Text(
+    'Add Property',
+    // style: TextStyle(
+    //   color: Colors.white, // Set text color to white
+    // ),
+  ),
+  
+  // backgroundColor: Colors.purple, 
+          
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
@@ -299,6 +385,92 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
                   validator: (value) => value == null || value.isEmpty
                       ? 'Address is required'
                       : null,
+                ),
+                const SizedBox(height: 10),
+                // Google Map with rounded corners
+                _isLoading
+                    ? const Center(child: CircularProgressIndicator())
+                    : Container(
+                        height: 300,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(5), 
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 6,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+ border: Border.all(
+            color: const Color.fromARGB(90, 0, 0, 0),  //r color (purple in this case)
+            width: 1.0// Border width (optional, adjust as needed)
+          ),
+
+                        ),
+                        
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(
+                              5), // Clip the map to the rounded corners
+                          child: GoogleMap(
+                            onMapCreated: (controller) {
+                              _mapController = controller;
+                            },
+                            initialCameraPosition: const CameraPosition(
+                              target:
+                                  LatLng(23.8103, 90.4125), // Default to Dhaka
+                              zoom: 12.0,
+                            ),
+                            onTap: _onMapTap,
+                            scrollGesturesEnabled: true, // Enable panning
+                            zoomGesturesEnabled: true, // Enable zooming
+                            rotateGesturesEnabled:
+                                true, // Enable rotating the map
+                            tiltGesturesEnabled: true, // Enable tilting the map
+                            compassEnabled: true, // Show compass on the map
+                            markers: _selectedLocation != null
+                                ? {
+                                    Marker(
+                                      markerId: const MarkerId('selected'),
+                                      position: _selectedLocation!,
+                                    ),
+                                  }
+                                : {},
+                          ),
+                        ),
+                      ),
+
+                Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _getCurrentLocation,
+                          child: const Text('Use Location'),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              _isLocationSaved = false; // Reset the save state
+                            });
+                            _saveLocation();
+                          },
+                          child: const Text('Save Location'),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    if (_selectedLocation != null && !_isLocationSaved)
+                      ElevatedButton(
+                        onPressed: null,
+                        child: Text(
+                          _locationText ??
+                              'Latitude: ${_selectedLocation!.latitude}, Longitude: ${_selectedLocation!.longitude}, Accuracy: ${_accuracy ?? 'Unknown'}m',
+                        ),
+                      ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
@@ -509,6 +681,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
               ],
             ),
           ),
-        ));
+        )
+        );
   }
 }

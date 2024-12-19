@@ -27,7 +27,7 @@ class _MapViewScreenState extends State<MapViewScreen> {
       const LatLng(23.946917253940256, 90.37751059937655); // Default to Gazipur
   BitmapDescriptor? _customMarkerIcon;
   bool _isHeatmapActive = false;
-  final String _googleApiKey = "";
+  final String _googleApiKey = "AIzaSyC2gbtlS2OhZ8cHdjokgRIDBurvhZPGQXU";
   LatLng? _lastClickedLocation;
   Set<Circle> _circles = {};
 
@@ -186,7 +186,7 @@ void _clearcurrentlocation() {
     setState(() {
       _polygonPoints.clear();
       _polygons.clear();
-      _markers.clear();
+      // _markers.clear();
       _circles.clear();
     });
 
@@ -507,7 +507,7 @@ void _showErrorSnackBar(String message) {
           zoom: 12,
         ),
         markers: _markers,
-        circles: _circles, // Add this line
+        circles: _circles, 
         polygons: _polygons,
         onTap: _handleMapTap,
         onMapCreated: (controller) => _mapController = controller,
