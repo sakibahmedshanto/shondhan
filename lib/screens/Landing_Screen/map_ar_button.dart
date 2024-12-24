@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:shondhan/screens/augmented/view_annotations.dart';
 import 'package:shondhan/screens/mapView/map_view_screen.dart';
 
+import '../geminiFilter/PropertyFilterScreen.dart';
+
 class MapArButtons extends StatelessWidget {
   const MapArButtons({super.key});
 
@@ -12,23 +14,24 @@ class MapArButtons extends StatelessWidget {
       children: [
         const SizedBox(height: 20),
         const Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               "Discover your next home... ",
               style: TextStyle(
-                fontSize:25,
+                fontSize: 25,
                 color: Colors.black,
               ),
             ),
           ],
         ),
         const SizedBox(height: 20),
-        Row(
+        Wrap(
           children: [
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-               Get.to(()=> MapViewScreen());
+                  Get.to(() => MapViewScreen());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
@@ -38,6 +41,7 @@ class MapArButtons extends StatelessWidget {
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.map, color: Colors.white), // Optional icon
                     SizedBox(width: 5),
@@ -53,7 +57,7 @@ class MapArButtons extends StatelessWidget {
             Expanded(
               child: ElevatedButton(
                 onPressed: () {
-                    Get.to(()=>const ViewAnnotations());
+                  Get.to(() => const ViewAnnotations());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
@@ -62,6 +66,7 @@ class MapArButtons extends StatelessWidget {
                       Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
                 child: const Row(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.view_in_ar,
@@ -69,6 +74,32 @@ class MapArButtons extends StatelessWidget {
                     SizedBox(width: 5),
                     Text(
                       "AR View",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.to(() =>  PropertyFilterScreen());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurple,
+                  elevation: 5, // Adds shadow effect
+                  shadowColor:
+                      Colors.black.withOpacity(0.4), // Adjust shadow color
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.view_in_ar,
+                        color: Colors.white), // Optional icon
+                    SizedBox(width: 5),
+                    Text(
+                      "AI Search",
                       style: TextStyle(color: Colors.white),
                     ),
                   ],

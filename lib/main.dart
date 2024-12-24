@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: const SplashScreen(), 
+      home: const SplashScreen(), 
 
       // home:SpeechToTextPage(),
 
-      home: PropertyFilterScreen(),
+      // home: PropertyFilterScreen(),
       builder: EasyLoading.init(),
       // navbar
       getPages: [
