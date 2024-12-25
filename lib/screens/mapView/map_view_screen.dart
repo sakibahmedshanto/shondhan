@@ -186,7 +186,7 @@ void _clearcurrentlocation() {
     setState(() {
       _polygonPoints.clear();
       _polygons.clear();
-      // _markers.clear();
+      _markers.clear();
       _circles.clear();
     });
 
