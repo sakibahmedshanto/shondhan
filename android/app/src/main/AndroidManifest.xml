@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.shondhan"> <!-- Replace with your app's package name -->
+    package="com.ahmedapps.shondhan"> <!-- Replace with your app's package name -->
 
     <!-- Permissions should be outside the <application> tag -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
     
     <application
-        android:label="shondhan"
+        android:label="Shondhan"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:theme="@style/LaunchTheme"

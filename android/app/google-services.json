@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:407093477991:android:42ab72f5dd487a6f194ac2",
         "android_client_info": {
-          "package_name": "com.example.shondhan"
+          "package_name": "com.ahmedapps.shondhan"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "407093477991-i2e5nshoqdo23crh6nkdl4qbdqqbupii.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.shondhan",
+            "package_name": "com.ahmedapps.shondhan",
             "certificate_hash": "bc262e347f389dc63b6a50bcf4491e2ad400dacd"
           }
         },
@@ -42,7 +42,7 @@
               "client_id": "407093477991-vloovdu34a0g1ino720fql6pp7hfct9f.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.shondhan"
+                "bundle_id": "com.ahmedapps.shondhan"
               }
             }
           ]
