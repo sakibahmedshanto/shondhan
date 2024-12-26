@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shondhan/models/user-model.dart';
 import 'package:shondhan/screens/Landing_Screen/switch_to_owner_button.dart';
 import 'houses_widget.dart';
-import 'current_location.dart';
+import 'current_location.dart'; 
 import 'map_ar_button.dart';
 import 'plot_category.dart';
 

@@ -2,9 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:shondhan/screens/Landing_Screen/landing_screen.dart';
 import 'package:shondhan/screens/auth-ui/splash_screen.dart';
 import 'package:shondhan/screens/main_screen.dart'; // Import MainScreen
 import 'firebase_options.dart';
+import 'screens/geminiFilter/PropertyFilterScreen.dart';
 import 'utils/app-constant.dart';
 
 Future<void> main() async {
@@ -31,7 +33,6 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(), 
 
       // home:SpeechToTextPage(),
-
       // home: PropertyFilterScreen(),
       builder: EasyLoading.init(),
       // navbar

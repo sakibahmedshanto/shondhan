@@ -96,8 +96,21 @@ class ItemDetailScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          FloatingWidget(leadingIcon: Icons.mail, txt: "Message"),
-          FloatingWidget(leadingIcon: Icons.phone, txt: "Call"),
+          FloatingWidget(
+            leadingIcon: Icons.mail,
+            txt: "WhatsApp",
+            onPressed: () {
+              launchWhatsApp();
+            },
+          ),
+          FloatingWidget(
+            leadingIcon: Icons.phone,
+            txt: "Call",
+            onPressed: () {
+              makePhoneCall(
+                  '01992099240'); 
+            },
+          ),
         ],
       ),
     );
@@ -120,50 +133,51 @@ class ItemDetailScreen extends StatelessWidget {
         );
       }),
       Column(
-  children: property.propertyVideos.map((videoUrl) {
-    return GestureDetector(
-      onTap: () => _launchURL(videoUrl), // Opens the video URL
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10), // Spacing between items
-        width: double.infinity,
-        height: 200, // Adjust height as needed
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                property.propertyImgs.first, // Display the first image
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.black12,
-                    child: const Icon(
-                      Icons.broken_image,
-                      size: 80,
-                      color: Colors.grey,
+        children: property.propertyVideos.map((videoUrl) {
+          return GestureDetector(
+            onTap: () => _launchURL(videoUrl), // Opens the video URL
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                  vertical: 10), // Spacing between items
+              width: double.infinity,
+              height: 200, // Adjust height as needed
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      property.propertyImgs.first, // Display the first image
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.black12,
+                          child: const Icon(
+                            Icons.broken_image,
+                            size: 80,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                  const Center(
+                    child: Icon(
+                      Icons.play_circle_fill,
+                      size: 80,
+                      color: Colors.deepPurple, // Play button color
+                    ),
+                  ),
+                ],
               ),
             ),
-            const Center(
-              child: Icon(
-                Icons.play_circle_fill,
-                size: 80,
-                color: Colors.deepPurple, // Play button color
-              ),
-            ),
-          ],
-        ),
+          );
+        }).toList(),
       ),
-    );
-  }).toList(),
-),
     ];
 
     return Container(

@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:shondhan/screens/augmented/view_annotations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FloatingWidget extends StatelessWidget {
   final IconData leadingIcon;
   final String txt;
-  const FloatingWidget({super.key, 
+  final VoidCallback onPressed;
+
+  const FloatingWidget({
+    super.key,
     required this.leadingIcon,
     required this.txt,
+    required this.onPressed,
   });
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -17,9 +21,7 @@ class FloatingWidget extends StatelessWidget {
       child: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
         elevation: 5,
-        onPressed: () {
-          Get.to(()=>const ViewAnnotations());
-        },
+        onPressed: onPressed,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(75.0),
         ),
@@ -59,5 +61,35 @@ class FloatingWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+void launchWhatsApp() async {
+  const number = '8801721665453'; 
+  const url = 'https://wa.me/$number';
+  try {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
+  } catch (e) {
+    print('Error launching WhatsApp: $e');
+  }
+}
+
+void makePhoneCall(String phoneNumber) async {
+  final Uri launchUri = Uri(
+    scheme: 'tel',
+    path: phoneNumber,
+  );
+  try {
+    if (await canLaunch(launchUri.toString())) {
+      await launch(launchUri.toString());
+    } else {
+      print('Could not launch $launchUri');
+    }
+  } catch (e) {
+    print('Error making phone call: $e');
   }
 }
