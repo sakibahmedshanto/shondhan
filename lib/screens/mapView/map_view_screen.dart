@@ -9,6 +9,7 @@ import 'package:shondhan/utils/app-constant.dart';
 import '../../models/property_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../Home/item_detail_screen.dart';
 
 class MapViewScreen extends StatefulWidget {
   const MapViewScreen({Key? key}) : super(key: key);
@@ -40,8 +41,8 @@ class _MapViewScreenState extends State<MapViewScreen> {
   }
 
   Future<void> _loadCustomMarkerIcon() async {
-    _customMarkerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(30, 30)),
+    _customMarkerIcon = await BitmapDescriptor.asset(
+      const ImageConfiguration(size: Size(60, 60)),
       'assets/images/home.png',
     );
   }
@@ -61,6 +62,7 @@ class _MapViewScreenState extends State<MapViewScreen> {
         final property = Property.fromJson(data);
 
         return Marker(
+          alpha: 0.9,
           markerId: MarkerId(property.propertyId),
           position:
               LatLng(property.location.latitude, property.location.longitude),
@@ -127,28 +129,11 @@ class _MapViewScreenState extends State<MapViewScreen> {
   }
 
   void _showPropertyDetails(Property property) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text(property.buildingName),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Price: ${property.rentPrice}"),
-              Text("Type: ${property.propertyType}"),
-              Text(
-                  "Location: ${property.location.latitude}, ${property.location.longitude}"),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Close"),
-            ),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ItemDetailScreen(property: property),
+      ),
     );
   }
 
@@ -172,26 +157,29 @@ class _MapViewScreenState extends State<MapViewScreen> {
     });
   }
 
-void _clearcurrentlocation() {
-  setState(() {
-    // Remove the marker with the ID "seller_location"
-    _markers.removeWhere((marker) => marker.markerId.value == "seller_location");
-  });
+  void _clearcurrentlocation() {
+    setState(() {
+      // Remove the marker with the ID "seller_location"
+      _markers.removeWhere((marker) => marker.markerId.value == "seller_location" && marker.alpha != .9);
+    });
 
-  // Optionally, you could reset the map to the default location or do nothing
-  _mapController?.animateCamera(CameraUpdate.newLatLngZoom(_defaultLocation, 12));
-}
+    // Optionally, you could reset the map to the default location or do nothing
+    _mapController?.animateCamera(CameraUpdate.newLatLngZoom(_defaultLocation, 12));
+  }
 
   void _clearPolygonAndNearbyPlaces() {
     setState(() {
+      // Remove all markers except those with the ID "home_marker"
+      _markers.removeWhere((marker) => marker.alpha != .9);
+
+      // Clear the polygons and circles as before
       _polygonPoints.clear();
       _polygons.clear();
-      _markers.clear();
       _circles.clear();
     });
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text("Cleared all nearby places and polygon.")),
+      const SnackBar(content: Text("Cleared all nearby places and polygon except home markers.")),
     );
   }
 
@@ -240,87 +228,88 @@ void _clearcurrentlocation() {
       _isHeatmapActive = !_isHeatmapActive;
     });
   }
+
   Future<void> _searchLocation() async {
-  TextEditingController searchController = TextEditingController();
+    TextEditingController searchController = TextEditingController();
 
-  // Show a dialog to get the search input
-  await showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: const Text("Search Location"),
-        content: TextField(
-          controller: searchController,
-          decoration: const InputDecoration(
-            hintText: "Enter location name or address",
+    // Show a dialog to get the search input
+    await showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Search Location"),
+          content: TextField(
+            controller: searchController,
+            decoration: const InputDecoration(
+              hintText: "Enter location name or address",
+            ),
           ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text("Cancel"),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop(searchController.text);
-            },
-            child: const Text("Search"),
-          ),
-        ],
-      );
-    },
-  );
-
-  // Get the search query from the user
-  String searchQuery = searchController.text.trim();
-  if (searchQuery.isEmpty) return;
-
-  try {
-    // Call the Geocoding API
-    final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/geocode/json?address=$searchQuery&key=$_googleApiKey');
-    final response = await http.get(url);
-    final data = json.decode(response.body);
-
-    if (response.statusCode == 200 && data['status'] == 'OK') {
-      // Get the coordinates of the first result
-      final location = data['results'][0]['geometry']['location'];
-      final double lat = location['lat'];
-      final double lng = location['lng'];
-      final LatLng searchedLocation = LatLng(lat, lng);
-
-      // Move the map to the searched location
-      setState(() {
-        _mapController?.animateCamera(
-          CameraUpdate.newLatLngZoom(searchedLocation, 15),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Cancel"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(searchController.text);
+              },
+              child: const Text("Search"),
+            ),
+          ],
         );
+      },
+    );
 
-        // Add a marker at the searched location
-        _markers.add(Marker(
-          markerId: const MarkerId("searched_location"),
-          position: searchedLocation,
-          infoWindow: InfoWindow(
-            title: data['results'][0]['formatted_address'],
-            snippet: "Searched Location",
-          ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
-        ));
-      });
-    } else {
-      _showErrorSnackBar("Location not found: ${data['status']}");
+    // Get the search query from the user
+    String searchQuery = searchController.text.trim();
+    if (searchQuery.isEmpty) return;
+
+    try {
+      // Call the Geocoding API
+      final url = Uri.parse(
+          'https://maps.googleapis.com/maps/api/geocode/json?address=$searchQuery&key=$_googleApiKey');
+      final response = await http.get(url);
+      final data = json.decode(response.body);
+
+      if (response.statusCode == 200 && data['status'] == 'OK') {
+        // Get the coordinates of the first result
+        final location = data['results'][0]['geometry']['location'];
+        final double lat = location['lat'];
+        final double lng = location['lng'];
+        final LatLng searchedLocation = LatLng(lat, lng);
+
+        // Move the map to the searched location
+        setState(() {
+          _mapController?.animateCamera(
+            CameraUpdate.newLatLngZoom(searchedLocation, 15),
+          );
+
+          // Add a marker at the searched location
+          _markers.add(Marker(
+            markerId: const MarkerId("searched_location"),
+            position: searchedLocation,
+            infoWindow: InfoWindow(
+              title: data['results'][0]['formatted_address'],
+              snippet: "Searched Location",
+            ),
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+          ));
+        });
+      } else {
+        _showErrorSnackBar("Location not found: ${data['status']}");
+      }
+    } catch (e) {
+      _showErrorSnackBar("Error searching location: $e");
     }
-  } catch (e) {
-    _showErrorSnackBar("Error searching location: $e");
   }
-}
 
-void _showErrorSnackBar(String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text(message)),
-  );
-}
+  void _showErrorSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
 
   Future<void> _fetchNearbyPlaces(LatLng location) async {
     const int radius = 500; // Search radius in meters
@@ -346,7 +335,7 @@ void _showErrorSnackBar(String message) {
     try {
       // Clear existing markers and circles
       setState(() {
-        _markers.clear();
+        _markers.removeWhere((marker) => marker.alpha != .9);
         _circles.clear();
       });
 
@@ -421,7 +410,7 @@ void _showErrorSnackBar(String message) {
     }
   }
 
-// Helper function to load custom icons from assets
+  // Helper function to load custom icons from assets
   Future<BitmapDescriptor> _getCustomIcon(String assetPath, int size) async {
     final ByteData data = await rootBundle.load(assetPath);
     final Uint8List bytes = data.buffer.asUint8List();
@@ -444,7 +433,8 @@ void _showErrorSnackBar(String message) {
       _lastClickedLocation = tappedPoint;
 
       // Clear previous markers except the tapped location
-      _markers.clear();
+      _markers.removeWhere((marker) => marker.alpha != .9);
+
       _markers.add(Marker(
         markerId: const MarkerId("clicked_location"),
         position: tappedPoint,
@@ -458,8 +448,6 @@ void _showErrorSnackBar(String message) {
 
     _mapController?.animateCamera(CameraUpdate.newLatLngZoom(tappedPoint, 15));
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -530,12 +518,6 @@ void _showErrorSnackBar(String message) {
             },
             child: const Icon(Icons.zoom_out),
           ),
-          // const SizedBox(height: 10),
-          // FloatingActionButton(
-          //   heroTag: "clear_polygon",
-          //   onPressed: _clearPolygon,
-          //   child: const Icon(Icons.clear),
-          // ),
           const SizedBox(height: 10),
           FloatingActionButton(
             heroTag: "toggle_heatmap",
