@@ -8,6 +8,12 @@
       "languageVersion": "3.2"
     },
     {
+      "name": "android_intent_plus",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/android_intent_plus-5.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "ar_location_view",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/ar_location_view-2.0.14",
       "packageUri": "lib/",
@@ -554,6 +560,12 @@
       "languageVersion": "2.15"
     },
     {
+      "name": "image_card",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/image_card-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "image_picker",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.1.2",
       "packageUri": "lib/",
@@ -696,6 +708,12 @@
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/mime-2.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.2"
+    },
+    {
+      "name": "model_viewer_plus",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/model_viewer_plus-1.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
     },
     {
       "name": "native_device_orientation",
@@ -1016,6 +1034,30 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "webview_flutter",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter-4.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "webview_flutter_android",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-4.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
+      "name": "webview_flutter_platform_interface",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_platform_interface-2.10.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_wkwebview-3.16.3",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
+    },
+    {
       "name": "xdg_directories",
       "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/xdg_directories-1.1.0",
       "packageUri": "lib/",
@@ -1040,7 +1082,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-26T08:51:56.710873Z",
+  "generated": "2024-12-26T13:16:28.737042Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///D:/flutter_installation1/flutter",
