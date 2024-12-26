@@ -12,7 +12,7 @@ class LandingScreen extends StatelessWidget {
   final List<String> PropertyType = [
     "Home",
     "Office",
-    "Fatory",
+    "Furniture",
     "Plot",
   ];
 
@@ -33,10 +33,10 @@ class LandingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CurrentLocation(
-                locationName: "Gazipur,",
-                city: "Dhaka",
-              ),
+              // const CurrentLocation(
+              //   locationName: "Gazipur,",
+              //   city: "Dhaka",
+              // ),
               SwitchToOwnerButton(userModel: userModel),
 
               /// two buttons

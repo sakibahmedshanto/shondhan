@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/Home/home_page_screen.dart';
+import 'package:shondhan/screens/furniture/all_furnitures.dart';
 
 class PlotCategory extends StatelessWidget {
   final List<Icon> PropertyIcons;  // Pass icons to the widget
@@ -42,7 +43,7 @@ class PlotCategory extends StatelessWidget {
                       print("Second button pressed");
                       break;
                     case 2:
-                      print("Third button pressed");
+                      Get.to(()=>AllFurnitureScreen());
                       break;
                     case 3:
                       print("Fourth button pressed");
