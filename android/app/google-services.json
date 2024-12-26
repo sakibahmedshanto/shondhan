@@ -2,14 +2,50 @@
   "project_info": {
     "project_number": "407093477991",
     "project_id": "shondhan-1",
-    "storage_bucket": "shondhan-1.appspot.com"
+    "storage_bucket": "shondhan-1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:407093477991:android:42ab72f5dd487a6f194ac2",
+        "mobilesdk_app_id": "1:407093477991:android:bcc752119416c326194ac2",
         "android_client_info": {
           "package_name": "com.ahmedapps.shondhan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407093477991-er27c4i87jhbe3bpva3venhu91akhtju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSOXOXWkY48zzY-k7GMfT3IaiFW0hb2rI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "407093477991-er27c4i87jhbe3bpva3venhu91akhtju.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "407093477991-vloovdu34a0g1ino720fql6pp7hfct9f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.shondhan"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407093477991:android:42ab72f5dd487a6f194ac2",
+        "android_client_info": {
+          "package_name": "com.example.shondhan"
         }
       },
       "oauth_client": [
@@ -17,8 +53,32 @@
           "client_id": "407093477991-i2e5nshoqdo23crh6nkdl4qbdqqbupii.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.ahmedapps.shondhan",
+            "package_name": "com.example.shondhan",
             "certificate_hash": "bc262e347f389dc63b6a50bcf4491e2ad400dacd"
+          }
+        },
+        {
+          "client_id": "407093477991-lqfbs7vqujg86hrcnn2m2pv84l0reaj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shondhan",
+            "certificate_hash": "a3e1642497d0d9830e25c63eb3398a96f6f7de6f"
+          }
+        },
+        {
+          "client_id": "407093477991-mc6susd5p1ujo2vf4lk33rf984aingmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shondhan",
+            "certificate_hash": "17800a68fb4e86110ceacc60c347b6481bcf9077"
+          }
+        },
+        {
+          "client_id": "407093477991-vomj5svpklm7iff4ikitcm5bnuf7h9ml.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shondhan",
+            "certificate_hash": "0ef52ea2001e4f0b5cf43766920347a661ab9655"
           }
         },
         {
@@ -42,7 +102,7 @@
               "client_id": "407093477991-vloovdu34a0g1ino720fql6pp7hfct9f.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.ahmedapps.shondhan"
+                "bundle_id": "com.example.shondhan"
               }
             }
           ]
