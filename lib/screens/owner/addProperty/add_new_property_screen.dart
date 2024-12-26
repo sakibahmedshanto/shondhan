@@ -5,8 +5,8 @@ import 'package:uuid/uuid.dart';
 import 'package:shondhan/models/property_model.dart';
 import 'package:shondhan/screens/Home/item_detail_screen.dart';
 import '../../../controllers/property_control/add_new_property.dart';
-import '../../../widgets/property_widgets/dropdown_input.dart';
-import '../../../widgets/property_widgets/text_input.dart';
+import 'location_picker.dart';
+import '../../../models/custom_position_model.dart';
 import 'property_form.dart';
 
 class AddPropertyScreen extends StatefulWidget {
@@ -47,6 +47,8 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
     'Transport': false,
   };
 
+  CustomPosition? _pickedLocation;
+
   bool _isValidUrl(String url) {
     final urlPattern = r'^(http|https):\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$';
     return RegExp(urlPattern).hasMatch(url);
@@ -81,6 +83,14 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
       Get.snackbar(
         'Validation Error',
         'Please fill all required fields and add at least one image.',
+      );
+      return;
+    }
+
+    if (_pickedLocation == null) {
+      Get.snackbar(
+        'Location Error',
+        'Please pick a location.',
       );
       return;
     }
@@ -127,18 +137,7 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
         "propertyVideos": propertyVideos,
         "veranda": addPropertyController.veranda.value,
         "washroom": addPropertyController.washroom.value,
-        "location": {
-          "longitude": 1,
-          "latitude": 1,
-          "timestamp": currentTime,
-          "accuracy": 1,
-          "altitude": 1,
-          "altitudeAccuracy": 1,
-          "heading": 1,
-          "headingAccuracy": 1,
-          "speed": 1,
-          "speedAccuracy": 1,
-        },
+        "location": _pickedLocation?.toJson(),
         "parkingSpace": addPropertyController.parkingSpace.value,
       };
 
@@ -158,6 +157,20 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
     }
   }
 
+  void _pickLocation() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => LocationPicker(
+          onLocationPicked: (location) {
+            setState(() {
+              _pickedLocation = location;
+            });
+          },
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -166,18 +179,28 @@ class _AddPropertyScreenState extends State<AddPropertyScreen> {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
-          child: PropertyForm(
-            formKey: _formKey,
-            addPropertyController: addPropertyController,
-            imageController: _imageController,
-            videoController: _videoController,
-            propertyImages: propertyImages,
-            propertyVideos: propertyVideos,
-            utilitiesIncluded: utilitiesIncluded,
-            nearbyFacilities: nearbyFacilities,
-            addImage: _addImage,
-            addVideo: _addVideo,
-            submitProperty: _submitProperty,
+          child: Column(
+            children: [
+              ElevatedButton(
+                onPressed: _pickLocation,
+                child: Text(_pickedLocation == null
+                    ? 'Pick Location'
+                    : 'Location Picked'),
+              ),
+              PropertyForm(
+                formKey: _formKey,
+                addPropertyController: addPropertyController,
+                imageController: _imageController,
+                videoController: _videoController,
+                propertyImages: propertyImages,
+                propertyVideos: propertyVideos,
+                utilitiesIncluded: utilitiesIncluded,
+                nearbyFacilities: nearbyFacilities,
+                addImage: _addImage,
+                addVideo: _addVideo,
+                submitProperty: _submitProperty,
+              ),
+            ],
           ),
         ));
   }
