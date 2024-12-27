@@ -4,6 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shondhan/screens/Home/custom_widgets/image_widget.dart';
+import 'package:shondhan/screens/Home/item_detail_screen.dart';
+import 'package:shondhan/utils/app-constant.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
@@ -127,7 +130,7 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filter Properties'),
-        backgroundColor: Colors.teal,
+        backgroundColor: AppConstant.appScendoryColor,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -167,10 +170,7 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
                   itemCount: filteredProperties.length,
                   itemBuilder: (context, index) {
                     final property = filteredProperties[index];
-                    return ListTile(
-                      title: Text(property.buildingName),
-                      subtitle: Text('Rent: \$${property.rentPrice}'),
-                    );
+                    return Expanded(child: ImageWidget(property: property));
                   },
                 ),
               )

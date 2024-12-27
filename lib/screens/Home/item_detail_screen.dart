@@ -23,6 +23,22 @@ class ItemDetailScreen extends StatelessWidget {
     }
   }
 
+  // Function to launch WhatsApp
+  Future<void> _launchWhatsApp(String phoneNumber) async {
+    final Uri uri = Uri.parse("https://wa.me/$phoneNumber");
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch WhatsApp';
+    }
+  }
+
+  // Function to make a call
+  Future<void> _makeCall(String phoneNumber) async {
+    final Uri uri = Uri(scheme: "tel", path: phoneNumber);
+    if (!await launchUrl(uri)) {
+      throw 'Could not make call';
+    }
+  }
+
   // Calculate the time difference since submission
   String _getTimeSinceSubmission(DateTime createdAt) {
     final Duration difference = DateTime.now().difference(createdAt);
@@ -96,8 +112,21 @@ class ItemDetailScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          FloatingWidget(leadingIcon: Icons.mail, txt: "Message"),
-          FloatingWidget(leadingIcon: Icons.phone, txt: "Call"),
+          
+          // FloatingActionButton(
+          //   heroTag: "whatsapp",
+          //   onPressed: () => _launchWhatsApp("8801721665453"),
+          //   child: const Icon(Icons.message),
+          //   backgroundColor: Colors.green,
+          // ),
+          Spacer(),
+          FloatingActionButton(
+            heroTag: "call",
+            onPressed: () => _makeCall("8801721665453"),
+            child: const Icon(Icons.call,color: Colors.white,),
+            backgroundColor: AppConstant.appScendoryColor,
+          ),
+          SizedBox(width: 18,)
         ],
       ),
     );
@@ -120,50 +149,50 @@ class ItemDetailScreen extends StatelessWidget {
         );
       }),
       Column(
-  children: property.propertyVideos.map((videoUrl) {
-    return GestureDetector(
-      onTap: () => _launchURL(videoUrl), // Opens the video URL
-      child: Container(
-        margin: const EdgeInsets.symmetric(vertical: 10), // Spacing between items
-        width: double.infinity,
-        height: 200, // Adjust height as needed
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Stack(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                property.propertyImgs.first, // Display the first image
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
-                errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    color: Colors.black12,
-                    child: const Icon(
-                      Icons.broken_image,
-                      size: 80,
-                      color: Colors.grey,
+        children: property.propertyVideos.map((videoUrl) {
+          return GestureDetector(
+            onTap: () => _launchURL(videoUrl), // Opens the video URL
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 10), // Spacing between items
+              width: double.infinity,
+              height: 200, // Adjust height as needed
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      property.propertyImgs.first, // Display the first image
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: Colors.black12,
+                          child: const Icon(
+                            Icons.broken_image,
+                            size: 80,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                  ),
+                  const Center(
+                    child: Icon(
+                      Icons.play_circle_fill,
+                      size: 80,
+                      color: Colors.deepPurple, // Play button color
+                    ),
+                  ),
+                ],
               ),
             ),
-            const Center(
-              child: Icon(
-                Icons.play_circle_fill,
-                size: 80,
-                color: Colors.deepPurple, // Play button color
-              ),
-            ),
-          ],
-        ),
+          );
+        }).toList(),
       ),
-    );
-  }).toList(),
-),
     ];
 
     return Container(
