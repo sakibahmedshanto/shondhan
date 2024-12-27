@@ -5,8 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shondhan/models/property_model.dart';
+import 'package:shondhan/screens/Home/custom_widgets/crime_score.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
+import 'package:shondhan/screens/Home/custom_widgets/rent_price_prediction.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -82,10 +84,11 @@ class ItemDetailScreen extends StatelessWidget {
             // Property Price, Building Name, Address, and Timeline
             _buildPropertyHeader(oCcy),
 
+            
             const SizedBox(height: 10),
-
             // House Information
             _buildSectionHeader("House Information"),
+
             _buildHouseInfo(),
 
             // Utilities Included
@@ -104,6 +107,12 @@ class ItemDetailScreen extends StatelessWidget {
             _buildSectionHeader("Description"),
             _buildDescription(),
 
+            const SizedBox(height: 10),
+            
+            CrimeScoreWidget(position: property.location),
+            const SizedBox(height: 10),
+            
+            RentPredictionWidget(property: property),
             const SizedBox(height: 30),
           ],
         ),
