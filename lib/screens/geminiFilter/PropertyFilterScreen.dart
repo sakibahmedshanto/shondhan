@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shondhan/screens/Home/custom_widgets/image_widget.dart';
-import 'package:shondhan/screens/Home/item_detail_screen.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -83,7 +82,8 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
       final Map<String, dynamic> structuredData = _parseResponse(responseData);
 
       // Use the structured data to filter properties from Firebase
-      final filteredResults = await _filterPropertiesFromFirebase(structuredData);
+      final filteredResults =
+          await _filterPropertiesFromFirebase(structuredData);
 
       setState(() {
         filteredProperties = filteredResults;
@@ -104,8 +104,10 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
   }
 
   // Function to filter properties from Firebase using the structured data
-  Future<List<Property>> _filterPropertiesFromFirebase(Map<String, dynamic> filters) async {
-    Query<Map<String, dynamic>> query = FirebaseFirestore.instance.collection('properties');
+  Future<List<Property>> _filterPropertiesFromFirebase(
+      Map<String, dynamic> filters) async {
+    Query<Map<String, dynamic>> query =
+        FirebaseFirestore.instance.collection('properties');
 
     if (filters['bedroom'] != null) {
       query = query.where('bedroom', isEqualTo: filters['bedroom']);
@@ -113,8 +115,72 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
     if (filters['bathroom'] != null) {
       query = query.where('bathroom', isEqualTo: filters['bathroom']);
     }
-    if (filters['price'] != null) {
-      query = query.where('rentPrice', isEqualTo: filters['price']);
+    if (filters['priceLower'] != null && filters['priceUpper'] != null) {
+      query = query.where('rentPrice',
+          isGreaterThanOrEqualTo: filters['priceLower']);
+      query =
+          query.where('rentPrice', isLessThanOrEqualTo: filters['priceUpper']);
+    } else if (filters['priceLower'] != null) {
+      query = query.where('rentPrice',
+          isGreaterThanOrEqualTo: filters['priceLower']);
+    } else if (filters['priceUpper'] != null) {
+      query =
+          query.where('rentPrice', isLessThanOrEqualTo: filters['priceUpper']);
+    }
+    if (filters['floor'] != null) {
+      query = query.where('floor', isEqualTo: filters['floor']);
+    }
+    if (filters['sizeSqft'] != null) {
+      query = query.where('sizeSqft', isEqualTo: filters['sizeSqft']);
+    }
+    if (filters['isAvailable'] != null) {
+      query = query.where('isAvailable', isEqualTo: filters['isAvailable']);
+    }
+    if (filters['furnished'] != null) {
+      query = query.where('furnished', isEqualTo: filters['furnished']);
+    }
+    if (filters['parkingSpace'] != null) {
+      query = query.where('parkingSpace', isEqualTo: filters['parkingSpace']);
+    }
+    if (filters['propertyType'] != null) {
+      query = query.where('propertyType', isEqualTo: filters['propertyType']);
+    }
+    if (filters['depositAmount'] != null) {
+      query = query.where('depositAmount', isEqualTo: filters['depositAmount']);
+    }
+    if (filters['leaseTerm'] != null) {
+      query = query.where('leaseTerm', isEqualTo: filters['leaseTerm']);
+    }
+    if (filters['petFriendly'] != null) {
+      query = query.where('petFriendly', isEqualTo: filters['petFriendly']);
+    }
+    if (filters['location'] != null) {
+      if (filters['location']['latitude'] != null) {
+        query = query.where('location.latitude',
+            isEqualTo: filters['location']['latitude']);
+      }
+      if (filters['location']['longitude'] != null) {
+        query = query.where('location.longitude',
+            isEqualTo: filters['location']['longitude']);
+      }
+    }
+    if (filters['neighborhood'] != null) {
+      query = query.where('neighborhood', isEqualTo: filters['neighborhood']);
+    }
+    if (filters['createdAt'] != null) {
+      query = query.where('createdAt', isEqualTo: filters['createdAt']);
+    }
+    if (filters['updatedAt'] != null) {
+      query = query.where('updatedAt', isEqualTo: filters['updatedAt']);
+    }
+    if (filters['description'] != null) {
+      query = query.where('description', isEqualTo: filters['description']);
+    }
+    if (filters['ownerId'] != null) {
+      query = query.where('ownerId', isEqualTo: filters['ownerId']);
+    }
+    if (filters['liked'] != null) {
+      query = query.where('liked', isEqualTo: filters['liked']);
     }
 
     final QuerySnapshot snapshot = await query.get();
@@ -141,7 +207,8 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
                 Expanded(
                   child: TextField(
                     controller: _textController,
-                    decoration: InputDecoration(labelText: 'Enter your filter prompt'),
+                    decoration:
+                        InputDecoration(labelText: 'Enter your filter prompt'),
                     onChanged: (value) {
                       setState(() {
                         userPrompt = value;
@@ -151,17 +218,22 @@ class _PropertyFilterScreenState extends State<PropertyFilterScreen> {
                 ),
                 const SizedBox(width: 8),
                 FloatingActionButton.small(
-                  onPressed: _speechToText.isNotListening ? _startListening : _stopListening,
+                  onPressed: _speechToText.isNotListening
+                      ? _startListening
+                      : _stopListening,
                   tooltip: 'Listen',
                   backgroundColor: Colors.blueGrey,
-                  child: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic),
+                  child: Icon(
+                      _speechToText.isNotListening ? Icons.mic_off : Icons.mic),
                 ),
               ],
             ),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: filterProperties,
-              child: isLoading ? CircularProgressIndicator() : Text('Filter Properties'),
+              child: isLoading
+                  ? CircularProgressIndicator()
+                  : Text('Filter Properties'),
             ),
             const SizedBox(height: 20),
             if (filteredProperties.isNotEmpty)
