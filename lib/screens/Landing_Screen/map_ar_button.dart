@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shondhan/screens/augmented/view_annotations.dart';
 import 'package:shondhan/screens/mapView/map_view_screen.dart';
-
 import '../geminiFilter/PropertyFilterScreen.dart';
 
 class MapArButtons extends StatelessWidget {
@@ -27,8 +26,11 @@ class MapArButtons extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Wrap(
+          spacing: 10, // Space between buttons
+          runSpacing: 10, // Space between rows
           children: [
-            Expanded(
+            SizedBox(
+              width: 140, // Set fixed width for buttons
               child: ElevatedButton(
                 onPressed: () {
                   Get.to(() => MapViewScreen());
@@ -36,12 +38,10 @@ class MapArButtons extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
                   elevation: 5, // Adds shadow effect
-                  shadowColor:
-                      Colors.black.withOpacity(0.4), // Adjust shadow color
+                  shadowColor: Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(Icons.map, color: Colors.white), // Optional icon
                     SizedBox(width: 5),
@@ -53,8 +53,8 @@ class MapArButtons extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 10), // Space between buttons
-            Expanded(
+            SizedBox(
+              width: 140, // Set fixed width for buttons
               child: ElevatedButton(
                 onPressed: () {
                   Get.to(() => const ViewAnnotations());
@@ -62,15 +62,12 @@ class MapArButtons extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
                   elevation: 5, // Adds shadow effect
-                  shadowColor:
-                      Colors.black.withOpacity(0.4), // Adjust shadow color
+                  shadowColor: Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
                 child: const Row(
-                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.view_in_ar,
-                        color: Colors.white), // Optional icon
+                    Icon(Icons.view_in_ar, color: Colors.white), // Optional icon
                     SizedBox(width: 5),
                     Text(
                       "AR View",
@@ -80,23 +77,21 @@ class MapArButtons extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
+            SizedBox(
+              width: 140, // Set fixed width for buttons
               child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() =>  PropertyFilterScreen());
+                  Get.to(() => PropertyFilterScreen());
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.deepPurple,
                   elevation: 5, // Adds shadow effect
-                  shadowColor:
-                      Colors.black.withOpacity(0.4), // Adjust shadow color
+                  shadowColor: Colors.black.withOpacity(0.4), // Adjust shadow color
                 ),
                 child: const Row(
-                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.view_in_ar,
-                        color: Colors.white), // Optional icon
+                    Icon(Icons.search, color: Colors.white), // Optional icon
                     SizedBox(width: 5),
                     Text(
                       "AI Search",
