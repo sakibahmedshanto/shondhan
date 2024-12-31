@@ -48,7 +48,7 @@ dependencies:
   google_fonts: ^6.2.0
   intl: ^0.17.0 
   carousel_slider: ^5.0.0
-  ar_location_view: ^2.0.14
+  ar_location_view: ^2.0.16
   image_picker: ^1.1.2
   firebase_storage: ^12.3.4
   google_maps_flutter: ^2.10.0

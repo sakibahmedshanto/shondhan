@@ -15,7 +15,7 @@
     },
     {
       "name": "ar_location_view",
-      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/ar_location_view-2.0.14",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/ar_location_view-2.0.16",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -843,13 +843,13 @@
     },
     {
       "name": "sensors_plus",
-      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus-5.0.1",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus-6.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "sensors_plus_platform_interface",
-      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus_platform_interface-1.2.0",
+      "rootUri": "file:///C:/Users/sakib/AppData/Local/Pub/Cache/hosted/pub.dev/sensors_plus_platform_interface-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -1082,7 +1082,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-27T16:16:36.276235Z",
+  "generated": "2024-12-28T15:17:46.673951Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///D:/flutter_installation1/flutter",
