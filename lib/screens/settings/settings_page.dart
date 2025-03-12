@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shondhan/provider/theme_provider.dart';
+import 'package:shondhan/screens/settings/about_page.dart'; // Import AboutPage
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -20,12 +21,15 @@ class SettingsPage extends StatelessWidget {
               themeProvider.toggleTheme(value);
             },
           ),
-          const Divider(), 
+          const Divider(),
           ListTile(
             title: const Text('About'),
             subtitle: const Text('App version, developer info'),
             onTap: () {
-            
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutPage()),
+              );
             },
           ),
         ],
