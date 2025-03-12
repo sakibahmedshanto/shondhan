@@ -58,9 +58,15 @@ class ItemDetailScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     final oCcy = NumberFormat("#,##,###", "en_INR"); // Updated number format
 
+    // Get the current theme brightness
+    final brightness = Theme.of(context).brightness;
+    final isDarkMode = brightness == Brightness.dark;
+
     SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
+      SystemUiOverlayStyle(
+        statusBarColor: isDarkMode ? Colors.black : Colors.white,
+        statusBarIconBrightness:
+            isDarkMode ? Brightness.light : Brightness.dark,
       ),
     );
 
@@ -73,7 +79,7 @@ class ItemDetailScreen extends StatelessWidget {
         backgroundColor: AppConstant.appScendoryColor,
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: isDarkMode ? Colors.black : Colors.grey.shade100, // Dynamic background color
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -84,7 +90,6 @@ class ItemDetailScreen extends StatelessWidget {
             // Property Price, Building Name, Address, and Timeline
             _buildPropertyHeader(oCcy),
 
-            
             const SizedBox(height: 10),
             // House Information
             _buildSectionHeader("House Information"),
@@ -121,21 +126,14 @@ class ItemDetailScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          
-          // FloatingActionButton(
-          //   heroTag: "whatsapp",
-          //   onPressed: () => _launchWhatsApp("8801721665453"),
-          //   child: const Icon(Icons.message),
-          //   backgroundColor: Colors.green,
-          // ),
           Spacer(),
           FloatingActionButton(
             heroTag: "call",
             onPressed: () => _makeCall("8801721665453"),
-            child: const Icon(Icons.call,color: Colors.white,),
+            child: const Icon(Icons.call, color: Colors.white),
             backgroundColor: AppConstant.appScendoryColor,
           ),
-          SizedBox(width: 18,)
+          const SizedBox(width: 18),
         ],
       ),
     );
@@ -205,7 +203,7 @@ class ItemDetailScreen extends StatelessWidget {
     ];
 
     return Container(
-      color: Colors.white,
+      color: Colors.white, // Keep the carousel background white
       padding: const EdgeInsets.all(12),
       child: CarouselSlider(
         options: CarouselOptions(
@@ -346,7 +344,7 @@ class ItemDetailScreen extends StatelessWidget {
     );
   }
 
-// Widget for Utilities and Nearby Facilities
+  // Widget for Utilities and Nearby Facilities
   Widget _buildGridSection(List<String> items) {
     IconData getIcon(String item) {
       switch (item.toLowerCase()) {
