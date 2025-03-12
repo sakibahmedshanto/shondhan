@@ -9,36 +9,125 @@ class PropertyTile extends StatelessWidget {
   PropertyTile({required this.property, required this.onTap});
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      elevation: 3,
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        title: Text(
-          property.buildingName,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+Widget build(BuildContext context) {
+  return Material(
+    color: Colors.transparent,
+    child: InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(15),
+      splashColor: Colors.deepPurple.withOpacity(0.15),
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.95),
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.08),
+              blurRadius: 15,
+              offset: const Offset(0, 6),
+            ),
+          ],
         ),
-        subtitle: Text(
-          'Price: \$${property.rentPrice}',
-          style: TextStyle(color: Colors.grey.shade700),
-        ),
-        trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey.shade600, size: 18),
-        leading: CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.grey.shade200,
-          backgroundImage: CachedNetworkImageProvider(
-            property.propertyImgs.isNotEmpty ? property.propertyImgs[0] : 'default_image_url',
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              /// **Property Image with Soft Shadow & Rounded Effect**
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(14),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.08),
+                      blurRadius: 8,
+                      offset: const Offset(2, 4),
+                    ),
+                  ],
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: CachedNetworkImage(
+                    imageUrl: property.propertyImgs.isNotEmpty
+                        ? property.propertyImgs[0]
+                        : 'default_image_url',
+                    width: 65,
+                    height: 65,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Container(
+                      width: 65,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: const Center(
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Container(
+                      width: 65,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Icon(Icons.image_not_supported, color: Colors.grey.shade400, size: 26),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 16),
+
+              /// **Property Details - Elegant, Clean, and Structured**
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      property.buildingName,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                        letterSpacing: 0.2,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      'Price: \$${property.rentPrice}',
+                      style: TextStyle(
+                        fontSize: 14.5,
+                        color: Colors.grey.shade700,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /// **Luxury Forward Arrow with Floating Effect**
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 5,
+                      offset: const Offset(2, 3),
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.arrow_forward_ios, color: Colors.grey, size: 18),
+              ),
+            ],
           ),
-          child: property.propertyImgs.isEmpty
-              ? Icon(Icons.image_not_supported, color: Colors.grey.shade400)
-              : null,
         ),
-        onTap: onTap,
       ),
-    );
-  }
+    ),
+  );
+}
 }

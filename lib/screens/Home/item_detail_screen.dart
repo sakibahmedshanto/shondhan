@@ -9,6 +9,7 @@ import 'package:shondhan/screens/Home/custom_widgets/crime_score.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/rent_price_prediction.dart';
+//import 'package:shondhan/screens/Home/custom_widgets/launchAPK_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -118,26 +119,37 @@ class ItemDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          
-          // FloatingActionButton(
-          //   heroTag: "whatsapp",
-          //   onPressed: () => _launchWhatsApp("8801721665453"),
-          //   child: const Icon(Icons.message),
-          //   backgroundColor: Colors.green,
-          // ),
-          Spacer(),
-          FloatingActionButton(
-            heroTag: "call",
-            onPressed: () => _makeCall("8801721665453"),
-            child: const Icon(Icons.call,color: Colors.white,),
-            backgroundColor: AppConstant.appScendoryColor,
-          ),
-          SizedBox(width: 18,)
-        ],
+     floatingActionButton: Stack(
+  children: [
+    Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Launch ArchViz Floating Button
+            //const LaunchAppButton(),
+
+            //const SizedBox(height: 12),
+
+            // Call Floating Button
+            FloatingActionButton(
+              heroTag: "call",
+              onPressed: () => _makeCall("8801721665453"),
+              backgroundColor: AppConstant.appScendoryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Icon(Icons.call, color: Colors.white),
+            ),
+          ],
+        ),
       ),
+    ),
+  ],
+),
+
     );
   }
 
@@ -203,6 +215,7 @@ class ItemDetailScreen extends StatelessWidget {
         }).toList(),
       ),
     ];
+
 
     return Container(
       color: Colors.white,
@@ -452,7 +465,7 @@ class ItemDetailScreen extends StatelessWidget {
   // Widget for Description
   Widget _buildDescription() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0), // Add space below the card
+      padding: const EdgeInsets.only(bottom: 5.0), // Add space below the card
       child: _buildCard(
         child: Text(
           property.description,
