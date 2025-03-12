@@ -1,51 +1,31 @@
 import 'package:flutter/material.dart';
-import 'appearance_page.dart';
-import 'security_page.dart';
-import 'about_page.dart';
+import 'package:provider/provider.dart';
+import 'package:shondhan/provider/theme_provider.dart';
 
 class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
       ),
       body: ListView(
         children: [
-          ListTile(
-            leading: Icon(Icons.person),
-            title: Text('Profile'),
-            onTap: () {
-              // Add navigation to profile editing page or dialog
+          SwitchListTile(
+            title: const Text('Dark Mode'),
+            value: themeProvider.themeMode == ThemeMode.dark,
+            onChanged: (bool value) {
+              themeProvider.toggleTheme(value);
             },
           ),
+          const Divider(), 
           ListTile(
-            leading: Icon(Icons.palette),
-            title: Text('Appearance'),
-            subtitle: Text('Theme, text size'),
+            title: const Text('About'),
+            subtitle: const Text('App version, developer info'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AppearancePage()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notifications'),
-            onTap: () {
-              // Add navigation to notifications settings page
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.lock_outline),
-            title: Text('Security'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SecurityPage()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text('About'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AboutPage()));
+            
             },
           ),
         ],

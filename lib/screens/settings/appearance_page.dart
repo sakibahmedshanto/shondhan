@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shondhan/provider/theme_provider.dart';
 
 class AppearancePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // Access the ThemeProvider from the provider
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Appearance Settings'),
@@ -11,9 +16,9 @@ class AppearancePage extends StatelessWidget {
         children: [
           SwitchListTile(
             title: Text('Dark Mode'),
-            value: false, // This should be bound to a state or a setting in your app.
+            value: themeProvider.themeMode == ThemeMode.dark, // Use provider's state to set the switch's position
             onChanged: (bool value) {
-              // Implement the functionality to toggle dark mode here.
+              themeProvider.toggleTheme(value); // Toggle the theme on change
             },
           ),
           ListTile(

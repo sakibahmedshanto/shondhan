@@ -9,17 +9,22 @@ class MapArButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Compute the text color based on the theme brightness
+    final textColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white
+        : Colors.black; //for theme
+
     return Column(
       children: [
         const SizedBox(height: 20),
-        const Row(
+        Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Discover your next home... ",
+              "Discover your next home...",
               style: TextStyle(
                 fontSize: 25,
-                color: Colors.black,
+                color: textColor, // Use the computed color here
               ),
             ),
           ],
