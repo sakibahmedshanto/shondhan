@@ -9,7 +9,7 @@ import 'package:shondhan/screens/Home/custom_widgets/crime_score.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/rent_price_prediction.dart';
-//import 'package:shondhan/screens/Home/custom_widgets/launchAPK_widget.dart';
+import 'package:shondhan/screens/Home/custom_widgets/launchAPK_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -129,9 +129,9 @@ class ItemDetailScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Launch ArchViz Floating Button
-            //const LaunchAppButton(),
-
-            //const SizedBox(height: 12),
+            const LaunchAppButton(),
+            
+            const SizedBox(height: 12),
 
             // Call Floating Button
             FloatingActionButton(
