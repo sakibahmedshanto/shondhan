@@ -4,6 +4,7 @@ import 'package:shondhan/screens/Landing_Screen/switch_to_owner_button.dart';
 import 'houses_widget.dart';
 import 'map_ar_button.dart';
 import 'plot_category.dart';
+import 'package:shondhan/screens/settings/settings_page.dart';
 
 class LandingScreen extends StatelessWidget {
   LandingScreen({super.key,required this.userModel});
@@ -26,6 +27,21 @@ class LandingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+         appBar: AppBar(
+          backgroundColor: Colors.white, // Adjust the color as needed
+          elevation: 0,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings, color: Colors.deepPurple),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                );
+              },
+            ),
+          ],
+        ),
         backgroundColor: const Color(0xFFF7F6FB),
         body: Padding(
           padding: const EdgeInsets.all(15),
