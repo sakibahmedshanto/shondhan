@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shondhan/models/property_model.dart';
 import 'package:shondhan/screens/Home/custom_widgets/crime_score.dart';
-import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/rent_price_prediction.dart';
 import 'package:shondhan/screens/Home/custom_widgets/launchAPK_widget.dart';
