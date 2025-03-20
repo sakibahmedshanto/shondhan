@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../models/custom_position_model.dart';
 
@@ -40,110 +41,151 @@ class _CrimeScoreWidgetState extends State<CrimeScoreWidget> {
     }
   }
 
-  @override
+   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.all(12),
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'Crime Score',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.deepPurple,
-              ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Title outside the card (consistent with other sections)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          child: Text(
+            'Crime Score',
+            style: GoogleFonts.notoSans(
+              fontSize: 20, // Matches Section Header
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple, // Matches Section Header
             ),
-            SizedBox(height: 20),
-            FutureBuilder<double>(
+          ),
+        ),
+
+        // Crime Score Card
+        Card(
+          margin: const EdgeInsets.symmetric(horizontal: 12),
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: FutureBuilder<double>(
               future: _crimeScore,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
                   return Text(
                     'Error: ${snapshot.error}',
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   );
                 } else if (snapshot.hasData) {
                   double score = snapshot.data!;
                   String comment;
                   Color commentColor;
+                  IconData icon;
+                  Color barColor;
 
-                  // Determine comment and color based on the score
+                  // Determine comment, colors, and icon based on the score
                   if (score <= 3) {
                     comment = 'Safe';
                     commentColor = Colors.green;
+                    barColor = Colors.green.shade600;
+                    icon = Icons.verified_user;
                   } else if (score > 3 && score <= 6) {
                     comment = 'You should be careful';
                     commentColor = Colors.orange;
+                    barColor = Colors.orange.shade600;
+                    icon = Icons.warning_amber_rounded;
                   } else if (score > 6 && score <= 8) {
                     comment = 'Be very cautious';
                     commentColor = Colors.deepOrange;
+                    barColor = Colors.deepOrange.shade600;
+                    icon = Icons.report_problem;
                   } else {
                     comment = 'Very dangerous';
                     commentColor = Colors.red;
+                    barColor = Colors.red.shade600;
+                    icon = Icons.dangerous;
                   }
 
                   return Column(
                     children: [
+                      // Safety Status (Centered Below "Crime Score")
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(icon, color: commentColor, size: 26),
+                          const SizedBox(width: 8),
+                          Text(
+                            comment,
+                            style: GoogleFonts.notoSans(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: commentColor,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Progress Bar
                       Container(
-                        height: 20,
+                        height: 22,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey[300],
+                          color: Colors.grey.shade300,
                         ),
-                        child: LayoutBuilder(
-                          builder: (context, constraints) {
-                            return FractionallySizedBox(
-                              alignment: Alignment.centerLeft,
-                              widthFactor: score / 10.0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Color.lerp(Colors.green, Colors.red, score / 10.0),
-                                ),
+                        child: Stack(
+                          children: [
+                            AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              height: 22,
+                              width: MediaQuery.of(context).size.width *
+                                  0.7 *
+                                  (score / 10.0), // Adjusts to screen width
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: barColor, // Solid color (No gradient)
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Crime Score: ${score.toStringAsFixed(1)} out of 10',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple,
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        comment,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: commentColor,
-                        ),
+                      const SizedBox(height: 16),
+
+                      // Score Display (Bottom)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Crime Score:',
+                            style: GoogleFonts.notoSans(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey.shade800,
+                            ),
+                          ),
+                          Text(
+                            '${score.toStringAsFixed(1)} / 10',
+                            style: GoogleFonts.notoSans(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   );
                 } else {
-                  return Text('No data');
+                  return const Text('No data available');
                 }
               },
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }

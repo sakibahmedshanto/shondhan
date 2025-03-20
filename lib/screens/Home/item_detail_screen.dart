@@ -9,6 +9,7 @@ import 'package:shondhan/screens/Home/custom_widgets/crime_score.dart';
 import 'package:shondhan/screens/Home/custom_widgets/floating_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/house_widget.dart';
 import 'package:shondhan/screens/Home/custom_widgets/rent_price_prediction.dart';
+import 'package:shondhan/screens/Home/custom_widgets/launchAPK_widget.dart';
 import 'package:shondhan/utils/app-constant.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -58,15 +59,9 @@ class ItemDetailScreen extends StatelessWidget {
     var screenWidth = MediaQuery.of(context).size.width;
     final oCcy = NumberFormat("#,##,###", "en_INR"); // Updated number format
 
-    // Get the current theme brightness
-    final brightness = Theme.of(context).brightness;
-    final isDarkMode = brightness == Brightness.dark;
-
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: isDarkMode ? Colors.black : Colors.white,
-        statusBarIconBrightness:
-            isDarkMode ? Brightness.light : Brightness.dark,
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
       ),
     );
 
@@ -79,7 +74,7 @@ class ItemDetailScreen extends StatelessWidget {
         backgroundColor: AppConstant.appScendoryColor,
         centerTitle: true,
       ),
-      backgroundColor: isDarkMode ? Colors.black : Colors.grey.shade100, // Dynamic background color
+      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -90,6 +85,7 @@ class ItemDetailScreen extends StatelessWidget {
             // Property Price, Building Name, Address, and Timeline
             _buildPropertyHeader(oCcy),
 
+            
             const SizedBox(height: 10),
             // House Information
             _buildSectionHeader("House Information"),
@@ -123,19 +119,37 @@ class ItemDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          Spacer(),
-          FloatingActionButton(
-            heroTag: "call",
-            onPressed: () => _makeCall("8801721665453"),
-            child: const Icon(Icons.call, color: Colors.white),
-            backgroundColor: AppConstant.appScendoryColor,
-          ),
-          const SizedBox(width: 18),
-        ],
+     floatingActionButton: Stack(
+  children: [
+    Align(
+      alignment: Alignment.bottomRight,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Launch ArchViz Floating Button
+            const LaunchAppButton(),
+            
+            const SizedBox(height: 12),
+
+            // Call Floating Button
+            FloatingActionButton(
+              heroTag: "call",
+              onPressed: () => _makeCall("8801721665453"),
+              backgroundColor: AppConstant.appScendoryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: const Icon(Icons.call, color: Colors.white),
+            ),
+          ],
+        ),
       ),
+    ),
+  ],
+),
+
     );
   }
 
@@ -202,8 +216,9 @@ class ItemDetailScreen extends StatelessWidget {
       ),
     ];
 
+
     return Container(
-      color: Colors.white, // Keep the carousel background white
+      color: Colors.white,
       padding: const EdgeInsets.all(12),
       child: CarouselSlider(
         options: CarouselOptions(
@@ -344,7 +359,7 @@ class ItemDetailScreen extends StatelessWidget {
     );
   }
 
-  // Widget for Utilities and Nearby Facilities
+// Widget for Utilities and Nearby Facilities
   Widget _buildGridSection(List<String> items) {
     IconData getIcon(String item) {
       switch (item.toLowerCase()) {
@@ -450,7 +465,7 @@ class ItemDetailScreen extends StatelessWidget {
   // Widget for Description
   Widget _buildDescription() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0), // Add space below the card
+      padding: const EdgeInsets.only(bottom: 5.0), // Add space below the card
       child: _buildCard(
         child: Text(
           property.description,
