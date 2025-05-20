@@ -1,26 +1,16 @@
-# TeamHexagon Shondhan Report
+# TeamTarangaShondhan Report
 
 ## Department of Computer Science and Engineering  
 Islamic University of Technology (IUT)  
 A subsidiary organ of OIC  
 
-### **Project Deliverables**  
-**Course:** CSE 4510 - Software Engineering and Object-Oriented Design Lab  
 
-**Team Name:** Team Hexagon  
+**Team Name:** Team Taranga
 
 **Team Members:**  
 1. Sakib Ahmed Shanto - 210041262  
-2. Sadia Afrin - 210041209  
-3. Nabila Newaz - 210041216  
-4. Meftahul Jannati Anonna - 210041227  
-5. Nafisa Haque - 210041231  
-6. Khan Mahi Al Atahar - 210041260  
-
-**Section:** 2(A)  
-**Semester:** 5th  
-**Academic Year:** 2023-24  
-**Date of Submission:** 20.03.2025  
+2. Nabila Newaz - 210041216  
+3. Meftahul Jannati Anonna - 210041227  
 
 ---
 
